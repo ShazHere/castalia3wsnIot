@@ -1,0 +1,1344 @@
+Castalia| what:General (2)
+Castalia| when:2016-10-05 14:47
+Castalia| repeat:0 label:General
+Castalia| repeat:1 label:General
+Castalia|		module:SN.Simulation
+Castalia|			simple output name:Execution time, seconds
+Castalia|				8622.093
+Castalia|			simple output name:Execution ratio (simtime/realtime)
+Castalia|				0.00811868217988
+Castalia|	module:SN.node[0].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.75432 
+Castalia|		simple output name:Estimated network lifetime (days)
+Castalia|			0.0170782 
+Castalia|		simple output name:Remaining Energy
+Castalia|			18715.2 
+Castalia|	module:SN.node[0].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			57 Failed, non RX state
+Castalia|			84704 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			519 TX pkts
+Castalia|	module:SN.node[0].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			520 Received from App
+Castalia|			47589 filtered, other dest
+Castalia|			37115 received data pkts
+Castalia|			519 sent data pkts
+Castalia|	module:SN.node[0].Application
+Castalia|		 index:1 simple output name:Packets loss rate
+Castalia|			0.0724638 total
+Castalia|		 index:2 simple output name:Packets loss rate
+Castalia|			0.115942 total
+Castalia|		 index:3 simple output name:Packets loss rate
+Castalia|			0.217391 total
+Castalia|		 index:4 simple output name:Packets loss rate
+Castalia|			0.130435 total
+Castalia|		 index:5 simple output name:Packets loss rate
+Castalia|			0.057971 total
+Castalia|		 index:6 simple output name:Packets loss rate
+Castalia|			0.101449 total
+Castalia|		 index:7 simple output name:Packets loss rate
+Castalia|			0.0289855 total
+Castalia|		 index:8 simple output name:Packets loss rate
+Castalia|			0.144928 total
+Castalia|		 index:9 simple output name:Packets loss rate
+Castalia|			0.101449 total
+Castalia|		 index:10 simple output name:Packets loss rate
+Castalia|			0.130435 total
+Castalia|		 index:11 simple output name:Packets loss rate
+Castalia|			0.26087 total
+Castalia|		 index:12 simple output name:Packets loss rate
+Castalia|			0.188406 total
+Castalia|		 index:13 simple output name:Packets loss rate
+Castalia|			0.0434783 total
+Castalia|		 index:14 simple output name:Packets loss rate
+Castalia|			0.130435 total
+Castalia|		 index:15 simple output name:Packets loss rate
+Castalia|			0.0869565 total
+Castalia|		 index:16 simple output name:Packets loss rate
+Castalia|			0.115942 total
+Castalia|		 index:17 simple output name:Packets loss rate
+Castalia|			0.246377 total
+Castalia|		 index:18 simple output name:Packets loss rate
+Castalia|			0.0869565 total
+Castalia|		 index:19 simple output name:Packets loss rate
+Castalia|			0.115942 total
+Castalia|		 index:20 simple output name:Packets loss rate
+Castalia|			0.0289855 total
+Castalia|		 index:21 simple output name:Packets loss rate
+Castalia|			0.231884 total
+Castalia|		 index:22 simple output name:Packets loss rate
+Castalia|			0.173913 total
+Castalia|		 index:23 simple output name:Packets loss rate
+Castalia|			0.130435 total
+Castalia|		 index:24 simple output name:Packets loss rate
+Castalia|			0.0724638 total
+Castalia|		 index:25 simple output name:Packets loss rate
+Castalia|			0.101449 total
+Castalia|		 index:26 simple output name:Packets loss rate
+Castalia|			0.1 total
+Castalia|		 index:27 simple output name:Packets loss rate
+Castalia|			0.144928 total
+Castalia|		 index:28 simple output name:Packets loss rate
+Castalia|			0.188406 total
+Castalia|		 index:29 simple output name:Packets loss rate
+Castalia|			0.304348 total
+Castalia|		 index:30 simple output name:Packets loss rate
+Castalia|			0.231884 total
+Castalia|		 index:31 simple output name:Packets loss rate
+Castalia|			0.0869565 total
+Castalia|		 index:32 simple output name:Packets loss rate
+Castalia|			0.0869565 total
+Castalia|		 index:33 simple output name:Packets loss rate
+Castalia|			0.0434783 total
+Castalia|		 index:34 simple output name:Packets loss rate
+Castalia|			0.115942 total
+Castalia|		 index:35 simple output name:Packets loss rate
+Castalia|			0.0724638 total
+Castalia|		 index:36 simple output name:Packets loss rate
+Castalia|			0.173913 total
+Castalia|		 index:37 simple output name:Packets loss rate
+Castalia|			0.173913 total
+Castalia|		 index:38 simple output name:Packets loss rate
+Castalia|			0.0724638 total
+Castalia|		 index:39 simple output name:Packets loss rate
+Castalia|			0.246377 total
+Castalia|		 index:40 simple output name:Packets loss rate
+Castalia|			0.0869565 total
+Castalia|		 index:41 simple output name:Packets loss rate
+Castalia|			0.0144928 total
+Castalia|		 index:42 simple output name:Packets loss rate
+Castalia|			0.0869565 total
+Castalia|		 index:43 simple output name:Packets loss rate
+Castalia|			0.0289855 total
+Castalia|		 index:44 simple output name:Packets loss rate
+Castalia|			0.057971 total
+Castalia|		 index:45 simple output name:Packets loss rate
+Castalia|			0.202899 total
+Castalia|		 index:46 simple output name:Packets loss rate
+Castalia|			0.144928 total
+Castalia|		 index:47 simple output name:Packets loss rate
+Castalia|			0.0434783 total
+Castalia|		 index:48 simple output name:Packets loss rate
+Castalia|			0.101449 total
+Castalia|		 index:49 simple output name:Packets loss rate
+Castalia|			0.101449 total
+Castalia|		 index:1 simple output name:Packets received per node
+Castalia|			64 
+Castalia|		 index:2 simple output name:Packets received per node
+Castalia|			61 
+Castalia|		 index:3 simple output name:Packets received per node
+Castalia|			54 
+Castalia|		 index:4 simple output name:Packets received per node
+Castalia|			60 
+Castalia|		 index:5 simple output name:Packets received per node
+Castalia|			65 
+Castalia|		 index:6 simple output name:Packets received per node
+Castalia|			62 
+Castalia|		 index:7 simple output name:Packets received per node
+Castalia|			67 
+Castalia|		 index:8 simple output name:Packets received per node
+Castalia|			59 
+Castalia|		 index:9 simple output name:Packets received per node
+Castalia|			62 
+Castalia|		 index:10 simple output name:Packets received per node
+Castalia|			60 
+Castalia|		 index:11 simple output name:Packets received per node
+Castalia|			51 
+Castalia|		 index:12 simple output name:Packets received per node
+Castalia|			56 
+Castalia|		 index:13 simple output name:Packets received per node
+Castalia|			66 
+Castalia|		 index:14 simple output name:Packets received per node
+Castalia|			60 
+Castalia|		 index:15 simple output name:Packets received per node
+Castalia|			63 
+Castalia|		 index:16 simple output name:Packets received per node
+Castalia|			61 
+Castalia|		 index:17 simple output name:Packets received per node
+Castalia|			52 
+Castalia|		 index:18 simple output name:Packets received per node
+Castalia|			63 
+Castalia|		 index:19 simple output name:Packets received per node
+Castalia|			61 
+Castalia|		 index:20 simple output name:Packets received per node
+Castalia|			67 
+Castalia|		 index:21 simple output name:Packets received per node
+Castalia|			53 
+Castalia|		 index:22 simple output name:Packets received per node
+Castalia|			57 
+Castalia|		 index:23 simple output name:Packets received per node
+Castalia|			60 
+Castalia|		 index:24 simple output name:Packets received per node
+Castalia|			64 
+Castalia|		 index:25 simple output name:Packets received per node
+Castalia|			62 
+Castalia|		 index:26 simple output name:Packets received per node
+Castalia|			63 
+Castalia|		 index:27 simple output name:Packets received per node
+Castalia|			59 
+Castalia|		 index:28 simple output name:Packets received per node
+Castalia|			56 
+Castalia|		 index:29 simple output name:Packets received per node
+Castalia|			48 
+Castalia|		 index:30 simple output name:Packets received per node
+Castalia|			53 
+Castalia|		 index:31 simple output name:Packets received per node
+Castalia|			63 
+Castalia|		 index:32 simple output name:Packets received per node
+Castalia|			63 
+Castalia|		 index:33 simple output name:Packets received per node
+Castalia|			66 
+Castalia|		 index:34 simple output name:Packets received per node
+Castalia|			61 
+Castalia|		 index:35 simple output name:Packets received per node
+Castalia|			64 
+Castalia|		 index:36 simple output name:Packets received per node
+Castalia|			57 
+Castalia|		 index:37 simple output name:Packets received per node
+Castalia|			57 
+Castalia|		 index:38 simple output name:Packets received per node
+Castalia|			64 
+Castalia|		 index:39 simple output name:Packets received per node
+Castalia|			52 
+Castalia|		 index:40 simple output name:Packets received per node
+Castalia|			63 
+Castalia|		 index:41 simple output name:Packets received per node
+Castalia|			68 
+Castalia|		 index:42 simple output name:Packets received per node
+Castalia|			63 
+Castalia|		 index:43 simple output name:Packets received per node
+Castalia|			67 
+Castalia|		 index:44 simple output name:Packets received per node
+Castalia|			65 
+Castalia|		 index:45 simple output name:Packets received per node
+Castalia|			55 
+Castalia|		 index:46 simple output name:Packets received per node
+Castalia|			59 
+Castalia|		 index:47 simple output name:Packets received per node
+Castalia|			66 
+Castalia|		 index:48 simple output name:Packets received per node
+Castalia|			62 
+Castalia|		 index:49 simple output name:Packets received per node
+Castalia|			62 
+Castalia|		 index:1 simple output name:Packets reception rate
+Castalia|			0.927536 total
+Castalia|		 index:2 simple output name:Packets reception rate
+Castalia|			0.884058 total
+Castalia|		 index:3 simple output name:Packets reception rate
+Castalia|			0.782609 total
+Castalia|		 index:4 simple output name:Packets reception rate
+Castalia|			0.869565 total
+Castalia|		 index:5 simple output name:Packets reception rate
+Castalia|			0.942029 total
+Castalia|		 index:6 simple output name:Packets reception rate
+Castalia|			0.898551 total
+Castalia|		 index:7 simple output name:Packets reception rate
+Castalia|			0.971014 total
+Castalia|		 index:8 simple output name:Packets reception rate
+Castalia|			0.855072 total
+Castalia|		 index:9 simple output name:Packets reception rate
+Castalia|			0.898551 total
+Castalia|		 index:10 simple output name:Packets reception rate
+Castalia|			0.869565 total
+Castalia|		 index:11 simple output name:Packets reception rate
+Castalia|			0.73913 total
+Castalia|		 index:12 simple output name:Packets reception rate
+Castalia|			0.811594 total
+Castalia|		 index:13 simple output name:Packets reception rate
+Castalia|			0.956522 total
+Castalia|		 index:14 simple output name:Packets reception rate
+Castalia|			0.869565 total
+Castalia|		 index:15 simple output name:Packets reception rate
+Castalia|			0.913043 total
+Castalia|		 index:16 simple output name:Packets reception rate
+Castalia|			0.884058 total
+Castalia|		 index:17 simple output name:Packets reception rate
+Castalia|			0.753623 total
+Castalia|		 index:18 simple output name:Packets reception rate
+Castalia|			0.913043 total
+Castalia|		 index:19 simple output name:Packets reception rate
+Castalia|			0.884058 total
+Castalia|		 index:20 simple output name:Packets reception rate
+Castalia|			0.971014 total
+Castalia|		 index:21 simple output name:Packets reception rate
+Castalia|			0.768116 total
+Castalia|		 index:22 simple output name:Packets reception rate
+Castalia|			0.826087 total
+Castalia|		 index:23 simple output name:Packets reception rate
+Castalia|			0.869565 total
+Castalia|		 index:24 simple output name:Packets reception rate
+Castalia|			0.927536 total
+Castalia|		 index:25 simple output name:Packets reception rate
+Castalia|			0.898551 total
+Castalia|		 index:26 simple output name:Packets reception rate
+Castalia|			0.9 total
+Castalia|		 index:27 simple output name:Packets reception rate
+Castalia|			0.855072 total
+Castalia|		 index:28 simple output name:Packets reception rate
+Castalia|			0.811594 total
+Castalia|		 index:29 simple output name:Packets reception rate
+Castalia|			0.695652 total
+Castalia|		 index:30 simple output name:Packets reception rate
+Castalia|			0.768116 total
+Castalia|		 index:31 simple output name:Packets reception rate
+Castalia|			0.913043 total
+Castalia|		 index:32 simple output name:Packets reception rate
+Castalia|			0.913043 total
+Castalia|		 index:33 simple output name:Packets reception rate
+Castalia|			0.956522 total
+Castalia|		 index:34 simple output name:Packets reception rate
+Castalia|			0.884058 total
+Castalia|		 index:35 simple output name:Packets reception rate
+Castalia|			0.927536 total
+Castalia|		 index:36 simple output name:Packets reception rate
+Castalia|			0.826087 total
+Castalia|		 index:37 simple output name:Packets reception rate
+Castalia|			0.826087 total
+Castalia|		 index:38 simple output name:Packets reception rate
+Castalia|			0.927536 total
+Castalia|		 index:39 simple output name:Packets reception rate
+Castalia|			0.753623 total
+Castalia|		 index:40 simple output name:Packets reception rate
+Castalia|			0.913043 total
+Castalia|		 index:41 simple output name:Packets reception rate
+Castalia|			0.985507 total
+Castalia|		 index:42 simple output name:Packets reception rate
+Castalia|			0.913043 total
+Castalia|		 index:43 simple output name:Packets reception rate
+Castalia|			0.971014 total
+Castalia|		 index:44 simple output name:Packets reception rate
+Castalia|			0.942029 total
+Castalia|		 index:45 simple output name:Packets reception rate
+Castalia|			0.797101 total
+Castalia|		 index:46 simple output name:Packets reception rate
+Castalia|			0.855072 total
+Castalia|		 index:47 simple output name:Packets reception rate
+Castalia|			0.956522 total
+Castalia|		 index:48 simple output name:Packets reception rate
+Castalia|			0.898551 total
+Castalia|		 index:49 simple output name:Packets reception rate
+Castalia|			0.898551 total
+Castalia|		histogram name:Application level latency, in ms
+Castalia|		histogram_min:0 histogram_max:200
+Castalia|		histogram_values 208 165 161 129 138 117 138 138 135 96 1541
+Castalia|	module:SN.node[1].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.74226 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2577 
+Castalia|	module:SN.node[1].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			91 Failed, non RX state
+Castalia|			84022 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1167 TX pkts
+Castalia|	module:SN.node[1].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			17 Overflown
+Castalia|			1189 Received from App
+Castalia|			50660 filtered, other dest
+Castalia|			33362 received data pkts
+Castalia|			1167 sent data pkts
+Castalia|	module:SN.node[1].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			88211.7 
+Castalia|	module:SN.node[2].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.73187 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2681 
+Castalia|	module:SN.node[2].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			129 Failed, non RX state
+Castalia|			83390 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1761 TX pkts
+Castalia|	module:SN.node[2].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			9 Overflown
+Castalia|			1770 Received from App
+Castalia|			49485 filtered, other dest
+Castalia|			33905 received data pkts
+Castalia|			1761 sent data pkts
+Castalia|	module:SN.node[2].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			92347.1 
+Castalia|	module:SN.node[3].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.74217 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2578 
+Castalia|	module:SN.node[3].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			95 Failed, non RX state
+Castalia|			83827 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1358 TX pkts
+Castalia|	module:SN.node[3].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			1358 Received from App
+Castalia|			50282 filtered, other dest
+Castalia|			33545 received data pkts
+Castalia|			1358 sent data pkts
+Castalia|	module:SN.node[3].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			104545 
+Castalia|	module:SN.node[4].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.74015 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2598 
+Castalia|	module:SN.node[4].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			132 Failed, non RX state
+Castalia|			83465 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1683 TX pkts
+Castalia|	module:SN.node[4].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			3 Overflown
+Castalia|			1687 Received from App
+Castalia|			49629 filtered, other dest
+Castalia|			33836 received data pkts
+Castalia|			1683 sent data pkts
+Castalia|	module:SN.node[4].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			94050.6 
+Castalia|	module:SN.node[5].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.74425 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2558 
+Castalia|	module:SN.node[5].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			105 Failed, non RX state
+Castalia|			84044 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1131 TX pkts
+Castalia|	module:SN.node[5].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			1131 Received from App
+Castalia|			50761 filtered, other dest
+Castalia|			33283 received data pkts
+Castalia|			1131 sent data pkts
+Castalia|	module:SN.node[5].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			86891 
+Castalia|	module:SN.node[6].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.7008 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2992 
+Castalia|	module:SN.node[6].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			200 Failed, non RX state
+Castalia|			78711 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			6369 TX pkts
+Castalia|	module:SN.node[6].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			80 Overflown
+Castalia|			6450 Received from App
+Castalia|			40140 filtered, other dest
+Castalia|			38571 received data pkts
+Castalia|			6369 sent data pkts
+Castalia|	module:SN.node[6].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			90261.1 
+Castalia|	module:SN.node[7].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.70533 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2947 
+Castalia|	module:SN.node[7].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			99 Failed, non RX state
+Castalia|			79212 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			5969 TX pkts
+Castalia|	module:SN.node[7].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			64 Overflown
+Castalia|			6036 Received from App
+Castalia|			41014 filtered, other dest
+Castalia|			38198 received data pkts
+Castalia|			5969 sent data pkts
+Castalia|	module:SN.node[7].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			83605.7 
+Castalia|	module:SN.node[8].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.74606 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2539 
+Castalia|	module:SN.node[8].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			112 Failed, non RX state
+Castalia|			84074 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1094 TX pkts
+Castalia|	module:SN.node[8].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			15 Overflown
+Castalia|			1110 Received from App
+Castalia|			50787 filtered, other dest
+Castalia|			33287 received data pkts
+Castalia|			1094 sent data pkts
+Castalia|	module:SN.node[8].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			95763.9 
+Castalia|	module:SN.node[9].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.73734 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2627 
+Castalia|	module:SN.node[9].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			189 Failed, non RX state
+Castalia|			83481 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1610 TX pkts
+Castalia|	module:SN.node[9].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			8 Overflown
+Castalia|			1618 Received from App
+Castalia|			49752 filtered, other dest
+Castalia|			33729 received data pkts
+Castalia|			1610 sent data pkts
+Castalia|	module:SN.node[9].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			90962.7 
+Castalia|	module:SN.node[10].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.74054 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2595 
+Castalia|	module:SN.node[10].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			92 Failed, non RX state
+Castalia|			83894 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1294 TX pkts
+Castalia|	module:SN.node[10].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			45 Overflown
+Castalia|			1340 Received from App
+Castalia|			50412 filtered, other dest
+Castalia|			33482 received data pkts
+Castalia|			1294 sent data pkts
+Castalia|	module:SN.node[10].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			94058.3 
+Castalia|	module:SN.node[11].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.73855 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2615 
+Castalia|	module:SN.node[11].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			130 Failed, non RX state
+Castalia|			83164 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1986 TX pkts
+Castalia|	module:SN.node[11].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			18 Overflown
+Castalia|			2004 Received from App
+Castalia|			49007 filtered, other dest
+Castalia|			34157 received data pkts
+Castalia|			1986 sent data pkts
+Castalia|	module:SN.node[11].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			110610 
+Castalia|	module:SN.node[12].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.74601 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.254 
+Castalia|	module:SN.node[12].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			109 Failed, non RX state
+Castalia|			84261 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			910 TX pkts
+Castalia|	module:SN.node[12].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			911 Received from App
+Castalia|			51181 filtered, other dest
+Castalia|			33080 received data pkts
+Castalia|			910 sent data pkts
+Castalia|	module:SN.node[12].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			100893 
+Castalia|	module:SN.node[13].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.74229 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2577 
+Castalia|	module:SN.node[13].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			121 Failed, non RX state
+Castalia|			84056 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1103 TX pkts
+Castalia|	module:SN.node[13].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			3 Overflown
+Castalia|			1107 Received from App
+Castalia|			50785 filtered, other dest
+Castalia|			33271 received data pkts
+Castalia|			1103 sent data pkts
+Castalia|	module:SN.node[13].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			85539.2 
+Castalia|	module:SN.node[14].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.73703 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.263 
+Castalia|	module:SN.node[14].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			164 Failed, non RX state
+Castalia|			83127 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1989 TX pkts
+Castalia|	module:SN.node[14].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			16 Overflown
+Castalia|			2005 Received from App
+Castalia|			48982 filtered, other dest
+Castalia|			34145 received data pkts
+Castalia|			1989 sent data pkts
+Castalia|	module:SN.node[14].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			93988.7 
+Castalia|	module:SN.node[15].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.73534 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2647 
+Castalia|	module:SN.node[15].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			125 Failed, non RX state
+Castalia|			83302 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1854 TX pkts
+Castalia|	module:SN.node[15].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			11 Overflown
+Castalia|			1878 Received from App
+Castalia|			49304 filtered, other dest
+Castalia|			33998 received data pkts
+Castalia|			1855 sent data pkts
+Castalia|	module:SN.node[15].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			89481.2 
+Castalia|	module:SN.node[16].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.74396 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.256 
+Castalia|	module:SN.node[16].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			139 Failed, non RX state
+Castalia|			84134 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1007 TX pkts
+Castalia|	module:SN.node[16].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			1008 Received from App
+Castalia|			50991 filtered, other dest
+Castalia|			33143 received data pkts
+Castalia|			1007 sent data pkts
+Castalia|	module:SN.node[16].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			92583.2 
+Castalia|	module:SN.node[17].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.73524 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2648 
+Castalia|	module:SN.node[17].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			106 Failed, non RX state
+Castalia|			83163 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			2011 TX pkts
+Castalia|	module:SN.node[17].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			14 Overflown
+Castalia|			2026 Received from App
+Castalia|			48987 filtered, other dest
+Castalia|			34176 received data pkts
+Castalia|			2011 sent data pkts
+Castalia|	module:SN.node[17].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			108408 
+Castalia|	module:SN.node[18].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.74274 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2573 
+Castalia|	module:SN.node[18].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			111 Failed, non RX state
+Castalia|			83582 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1587 TX pkts
+Castalia|	module:SN.node[18].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			8 Overflown
+Castalia|			1596 Received from App
+Castalia|			49844 filtered, other dest
+Castalia|			33738 received data pkts
+Castalia|			1587 sent data pkts
+Castalia|	module:SN.node[18].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			89620.9 
+Castalia|	module:SN.node[19].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.74148 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2585 
+Castalia|	module:SN.node[19].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			146 Failed, non RX state
+Castalia|			83887 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1247 TX pkts
+Castalia|	module:SN.node[19].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			8 Overflown
+Castalia|			1255 Received from App
+Castalia|			50513 filtered, other dest
+Castalia|			33374 received data pkts
+Castalia|			1247 sent data pkts
+Castalia|	module:SN.node[19].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			92534.8 
+Castalia|	module:SN.node[20].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.73496 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.265 
+Castalia|	module:SN.node[20].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			168 Failed, non RX state
+Castalia|			82953 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			2159 TX pkts
+Castalia|	module:SN.node[20].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			28 Overflown
+Castalia|			2188 Received from App
+Castalia|			48646 filtered, other dest
+Castalia|			34307 received data pkts
+Castalia|			2159 sent data pkts
+Castalia|	module:SN.node[20].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			84132.1 
+Castalia|	module:SN.node[21].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.74525 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2547 
+Castalia|	module:SN.node[21].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			127 Failed, non RX state
+Castalia|			83877 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1276 TX pkts
+Castalia|	module:SN.node[21].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			12 Overflown
+Castalia|			1289 Received from App
+Castalia|			50419 filtered, other dest
+Castalia|			33458 received data pkts
+Castalia|			1276 sent data pkts
+Castalia|	module:SN.node[21].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			106587 
+Castalia|	module:SN.node[22].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.74759 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2524 
+Castalia|	module:SN.node[22].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			115 Failed, non RX state
+Castalia|			84149 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1016 TX pkts
+Castalia|	module:SN.node[22].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			4 Overflown
+Castalia|			1020 Received from App
+Castalia|			50974 filtered, other dest
+Castalia|			33175 received data pkts
+Castalia|			1016 sent data pkts
+Castalia|	module:SN.node[22].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			99155.9 
+Castalia|	module:SN.node[23].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.74206 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2579 
+Castalia|	module:SN.node[23].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			100 Failed, non RX state
+Castalia|			83653 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1527 TX pkts
+Castalia|	module:SN.node[23].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			1531 Received from App
+Castalia|			49960 filtered, other dest
+Castalia|			33693 received data pkts
+Castalia|			1527 sent data pkts
+Castalia|	module:SN.node[23].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			94088.4 
+Castalia|	module:SN.node[24].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.7359 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2641 
+Castalia|	module:SN.node[24].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			129 Failed, non RX state
+Castalia|			83050 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			2101 TX pkts
+Castalia|	module:SN.node[24].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			40 Overflown
+Castalia|			2148 Received from App
+Castalia|			48745 filtered, other dest
+Castalia|			34305 received data pkts
+Castalia|			2101 sent data pkts
+Castalia|	module:SN.node[24].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			88093.3 
+Castalia|	module:SN.node[25].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.74051 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2595 
+Castalia|	module:SN.node[25].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			133 Failed, non RX state
+Castalia|			83877 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1270 TX pkts
+Castalia|	module:SN.node[25].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			8 Overflown
+Castalia|			1305 Received from App
+Castalia|			50435 filtered, other dest
+Castalia|			33442 received data pkts
+Castalia|			1270 sent data pkts
+Castalia|	module:SN.node[25].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			91023.7 
+Castalia|	module:SN.node[26].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.73815 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2618 
+Castalia|	module:SN.node[26].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			118 Failed, non RX state
+Castalia|			83150 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			2012 TX pkts
+Castalia|	module:SN.node[26].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			39 Overflown
+Castalia|			2055 Received from App
+Castalia|			48965 filtered, other dest
+Castalia|			34185 received data pkts
+Castalia|			2012 sent data pkts
+Castalia|	module:SN.node[26].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			89534.3 
+Castalia|	module:SN.node[27].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.73315 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2668 
+Castalia|	module:SN.node[27].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			144 Failed, non RX state
+Castalia|			82806 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			2330 TX pkts
+Castalia|	module:SN.node[27].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			39 Overflown
+Castalia|			2369 Received from App
+Castalia|			48313 filtered, other dest
+Castalia|			34493 received data pkts
+Castalia|			2330 sent data pkts
+Castalia|	module:SN.node[27].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			95503.5 
+Castalia|	module:SN.node[28].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.7461 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2539 
+Castalia|	module:SN.node[28].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			124 Failed, non RX state
+Castalia|			84115 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1041 TX pkts
+Castalia|	module:SN.node[28].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			1041 Received from App
+Castalia|			50926 filtered, other dest
+Castalia|			33189 received data pkts
+Castalia|			1041 sent data pkts
+Castalia|	module:SN.node[28].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			100895 
+Castalia|	module:SN.node[29].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.74253 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2575 
+Castalia|	module:SN.node[29].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			120 Failed, non RX state
+Castalia|			84112 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1048 TX pkts
+Castalia|	module:SN.node[29].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			2 Overflown
+Castalia|			1052 Received from App
+Castalia|			50901 filtered, other dest
+Castalia|			33211 received data pkts
+Castalia|			1048 sent data pkts
+Castalia|	module:SN.node[29].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			117622 
+Castalia|	module:SN.node[30].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.73439 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2656 
+Castalia|	module:SN.node[30].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			125 Failed, non RX state
+Castalia|			82746 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			2409 TX pkts
+Castalia|	module:SN.node[30].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			36 Overflown
+Castalia|			2446 Received from App
+Castalia|			48135 filtered, other dest
+Castalia|			34611 received data pkts
+Castalia|			2409 sent data pkts
+Castalia|	module:SN.node[30].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			106343 
+Castalia|	module:SN.node[31].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.72313 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2769 
+Castalia|	module:SN.node[31].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			155 Failed, non RX state
+Castalia|			82274 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			2851 TX pkts
+Castalia|	module:SN.node[31].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			77 Overflown
+Castalia|			2945 Received from App
+Castalia|			47235 filtered, other dest
+Castalia|			35039 received data pkts
+Castalia|			2851 sent data pkts
+Castalia|	module:SN.node[31].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			89250.4 
+Castalia|	module:SN.node[32].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.73842 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2616 
+Castalia|	module:SN.node[32].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			126 Failed, non RX state
+Castalia|			83455 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1699 TX pkts
+Castalia|	module:SN.node[32].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			18 Overflown
+Castalia|			1719 Received from App
+Castalia|			49586 filtered, other dest
+Castalia|			33869 received data pkts
+Castalia|			1699 sent data pkts
+Castalia|	module:SN.node[32].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			89539.4 
+Castalia|	module:SN.node[33].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.74078 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2592 
+Castalia|	module:SN.node[33].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			170 Failed, non RX state
+Castalia|			83826 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1284 TX pkts
+Castalia|	module:SN.node[33].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			1 Overflown
+Castalia|			1285 Received from App
+Castalia|			50429 filtered, other dest
+Castalia|			33397 received data pkts
+Castalia|			1284 sent data pkts
+Castalia|	module:SN.node[33].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			85511.8 
+Castalia|	module:SN.node[34].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.74441 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2556 
+Castalia|	module:SN.node[34].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			108 Failed, non RX state
+Castalia|			83882 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1290 TX pkts
+Castalia|	module:SN.node[34].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			3 Overflown
+Castalia|			1294 Received from App
+Castalia|			50433 filtered, other dest
+Castalia|			33449 received data pkts
+Castalia|			1290 sent data pkts
+Castalia|	module:SN.node[34].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			92591.9 
+Castalia|	module:SN.node[35].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.72399 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.276 
+Castalia|	module:SN.node[35].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			115 Failed, non RX state
+Castalia|			82103 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			3062 TX pkts
+Castalia|	module:SN.node[35].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			26 Overflown
+Castalia|			3089 Received from App
+Castalia|			46865 filtered, other dest
+Castalia|			35238 received data pkts
+Castalia|			3062 sent data pkts
+Castalia|	module:SN.node[35].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			87871.8 
+Castalia|	module:SN.node[36].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.7408 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2592 
+Castalia|	module:SN.node[36].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			119 Failed, non RX state
+Castalia|			83702 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1459 TX pkts
+Castalia|	module:SN.node[36].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			7 Overflown
+Castalia|			1466 Received from App
+Castalia|			50073 filtered, other dest
+Castalia|			33629 received data pkts
+Castalia|			1459 sent data pkts
+Castalia|	module:SN.node[36].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			99014.1 
+Castalia|	module:SN.node[37].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.74929 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2507 
+Castalia|	module:SN.node[37].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			128 Failed, non RX state
+Castalia|			84294 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			858 TX pkts
+Castalia|	module:SN.node[37].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			864 Received from App
+Castalia|			51298 filtered, other dest
+Castalia|			32996 received data pkts
+Castalia|			858 sent data pkts
+Castalia|	module:SN.node[37].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			99191.6 
+Castalia|	module:SN.node[38].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.74571 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2543 
+Castalia|	module:SN.node[38].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			107 Failed, non RX state
+Castalia|			84259 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			914 TX pkts
+Castalia|	module:SN.node[38].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			1 Overflown
+Castalia|			915 Received from App
+Castalia|			51186 filtered, other dest
+Castalia|			33073 received data pkts
+Castalia|			914 sent data pkts
+Castalia|	module:SN.node[38].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			88275.8 
+Castalia|	module:SN.node[39].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.74581 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2542 
+Castalia|	module:SN.node[39].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			95 Failed, non RX state
+Castalia|			84250 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			935 TX pkts
+Castalia|	module:SN.node[39].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			7 Overflown
+Castalia|			943 Received from App
+Castalia|			51126 filtered, other dest
+Castalia|			33124 received data pkts
+Castalia|			935 sent data pkts
+Castalia|	module:SN.node[39].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			108650 
+Castalia|	module:SN.node[40].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.72655 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2734 
+Castalia|	module:SN.node[40].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			116 Failed, non RX state
+Castalia|			82286 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			2878 TX pkts
+Castalia|	module:SN.node[40].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			25 Overflown
+Castalia|			2905 Received from App
+Castalia|			47245 filtered, other dest
+Castalia|			35041 received data pkts
+Castalia|			2878 sent data pkts
+Castalia|	module:SN.node[40].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			89315 
+Castalia|	module:SN.node[41].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.73823 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2618 
+Castalia|	module:SN.node[41].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			94 Failed, non RX state
+Castalia|			83216 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1970 TX pkts
+Castalia|	module:SN.node[41].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			71 Overflown
+Castalia|			2041 Received from App
+Castalia|			49040 filtered, other dest
+Castalia|			34176 received data pkts
+Castalia|			1970 sent data pkts
+Castalia|	module:SN.node[41].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			82952.2 
+Castalia|	module:SN.node[42].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.73896 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.261 
+Castalia|	module:SN.node[42].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			127 Failed, non RX state
+Castalia|			83470 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1683 TX pkts
+Castalia|	module:SN.node[42].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			18 Overflown
+Castalia|			1701 Received from App
+Castalia|			49634 filtered, other dest
+Castalia|			33836 received data pkts
+Castalia|			1683 sent data pkts
+Castalia|	module:SN.node[42].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			89549.4 
+Castalia|	module:SN.node[43].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.73998 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.26 
+Castalia|	module:SN.node[43].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			101 Failed, non RX state
+Castalia|			83284 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1895 TX pkts
+Castalia|	module:SN.node[43].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			21 Overflown
+Castalia|			1916 Received from App
+Castalia|			49224 filtered, other dest
+Castalia|			34060 received data pkts
+Castalia|			1895 sent data pkts
+Castalia|	module:SN.node[43].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			84221.5 
+Castalia|	module:SN.node[44].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.7445 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2555 
+Castalia|	module:SN.node[44].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			186 Failed, non RX state
+Castalia|			84143 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			951 TX pkts
+Castalia|	module:SN.node[44].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			1 Overflown
+Castalia|			952 Received from App
+Castalia|			51063 filtered, other dest
+Castalia|			33080 received data pkts
+Castalia|			951 sent data pkts
+Castalia|	module:SN.node[44].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			86895.6 
+Castalia|	module:SN.node[45].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.74449 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2555 
+Castalia|	module:SN.node[45].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			102 Failed, non RX state
+Castalia|			84174 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1004 TX pkts
+Castalia|	module:SN.node[45].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			1004 Received from App
+Castalia|			50997 filtered, other dest
+Castalia|			33177 received data pkts
+Castalia|			1004 sent data pkts
+Castalia|	module:SN.node[45].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			102695 
+Castalia|	module:SN.node[46].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.74594 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2541 
+Castalia|	module:SN.node[46].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			126 Failed, non RX state
+Castalia|			84080 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1074 TX pkts
+Castalia|	module:SN.node[46].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			1075 Received from App
+Castalia|			50868 filtered, other dest
+Castalia|			33212 received data pkts
+Castalia|			1074 sent data pkts
+Castalia|	module:SN.node[46].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			95761.5 
+Castalia|	module:SN.node[47].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.74036 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2596 
+Castalia|	module:SN.node[47].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			83 Failed, non RX state
+Castalia|			84001 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1196 TX pkts
+Castalia|	module:SN.node[47].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			1197 Received from App
+Castalia|			50631 filtered, other dest
+Castalia|			33370 received data pkts
+Castalia|			1196 sent data pkts
+Castalia|	module:SN.node[47].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			85504.4 
+Castalia|	module:SN.node[48].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.73429 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2657 
+Castalia|	module:SN.node[48].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			108 Failed, non RX state
+Castalia|			83602 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1570 TX pkts
+Castalia|	module:SN.node[48].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			7 Overflown
+Castalia|			1577 Received from App
+Castalia|			49873 filtered, other dest
+Castalia|			33729 received data pkts
+Castalia|			1570 sent data pkts
+Castalia|	module:SN.node[48].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			90904.3 
+Castalia|	module:SN.node[49].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			4.74769 
+Castalia|		simple output name:Remaining Energy
+Castalia|			95.2523 
+Castalia|	module:SN.node[49].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			130 Failed, non RX state
+Castalia|			84280 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			870 TX pkts
+Castalia|	module:SN.node[49].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			870 Received from App
+Castalia|			51267 filtered, other dest
+Castalia|			33013 received data pkts
+Castalia|			870 sent data pkts
+Castalia|	module:SN.node[49].Application
+Castalia|		simple output name:Energy nJ/bit
+Castalia|			91161.5 

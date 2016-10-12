@@ -1,0 +1,114 @@
+
+0.003536244016  SN.node[1].Application                   Alhumdulillah; This is startup() of NodeSensor  Location = (0, 0)
+0.006066428963  SN.node[5].Application                   Alhumdulillah; This is startup() of NodeSensor  Location = (15, 15)
+0.014545237179  SN.node[4].Application                   Alhumdulillah; This is startup() of NodeSensor  Location = (0, 15)
+0.021853097004  SN.node[9].Application                   Alhumdulillah; This is startup() of NodeSensor  Location = (30, 30)
+0.025541380047  SN.node[6].Application                   Alhumdulillah; This is startup() of NodeSensor  Location = (30, 15)
+0.027539895218  SN.node[0].Application                   Alhumdulillah; This is startup() of NodeSensor and SINK  Location = (1, 0)
+0.028465566283  SN.node[7].Application                   Alhumdulillah; This is startup() of NodeSensor  Location = (0, 30)
+0.035407391109  SN.node[2].Application                   Alhumdulillah; This is startup() of NodeSensor  Location = (15, 0)
+0.041997452115  SN.node[3].Application                   Alhumdulillah; This is startup() of NodeSensor  Location = (30, 0)
+0.044647347892  SN.node[8].Application                   Alhumdulillah; This is startup() of NodeSensor  Location = (15, 30)
+0.044814654556  SN.node[10].Application                  Alhumdulillah; This is startup() of NodeIot  Location = (29, 30)
+10.022043701942 SN.node[9].Application                   Sending [SearchIotPacket] of size 16 bytes to communication layer
+10.023343701941 SN.node[10].Application                  received packet from 9 with LQI = 14.6124 spEnergy = 0.68 rcvPacketName = SearchIotPacket message type is MESSAGETYPE_SNTOIOT_SEARCHIOT
+10.023343701941 SN.node[10].Application                  Sending [IoTReplyPacket] of size 16 bytes to communication layer
+10.02464370194  SN.node[9].Application                   received packet from IOT 10 with LQI = 19.6124 rcvPacketName = IoTReplyPacket message type is MESSAGETYPE_IOTTOSN_SEARCHREPLY
+12.02208182293  SN.node[9].Application                   best proposal id is IOT 10
+12.02208182293  SN.node[9].Application                   Sending [genericDataPacket] of size 16 bytes to communication layer
+12.023381822929 SN.node[10].Application                  received packet from 9 with LQI = 14.6124 messageType = 5 rcvPacketName = genericDataPacket message type in data is MESSAGETYPE_SNTOIOT_DATAPACKET
+12.023381822929 SN.node[10].Application                  Data packet added at Iot
+42.044857262436 SN.node[10].Application                  direction check passed and direction is 0
+42.044857262436 SN.node[10].Application                  directin chek passed n datapacketrecord > 0
+42.044857262436 SN.node[10].Application                  NO SN FOUND to drop data packts
+42.044857262436 SN.node[10].Application                  broadcasting drop packet from  Location = (0, 0)
+42.044857262436 SN.node[10].Application                  Sending [IoTDropPacket] of size 16 bytes to communication layer
+42.046157262435 SN.node[1].Application                   received drop packet from 10 with LQI = 95 messageType = MESSAGETYPE_IOTTOSN_DROPTOSEARCHSN rcvPacketName = IoTDropPacket
+42.046157262435 SN.node[2].Application                   received drop packet from 10 with LQI = 11.7738 messageType = MESSAGETYPE_IOTTOSN_DROPTOSEARCHSN rcvPacketName = IoTDropPacket
+42.046157262435 SN.node[4].Application                   received drop packet from 10 with LQI = 11.7738 messageType = MESSAGETYPE_IOTTOSN_DROPTOSEARCHSN rcvPacketName = IoTDropPacket
+42.046157262435 SN.node[5].Application                   received drop packet from 10 with LQI = 8.16145 messageType = MESSAGETYPE_IOTTOSN_DROPTOSEARCHSN rcvPacketName = IoTDropPacket
+42.046157262435 SN.node[7].Application                   received drop packet from 10 with LQI = 6.44944 messageType = MESSAGETYPE_IOTTOSN_DROPTOSEARCHSN rcvPacketName = IoTDropPacket
+42.163031266299 SN.node[1].Application                   sending MESSAGETYPE_SNTOIOT_DROP_REPLY to source = 10
+42.163031266299 SN.node[1].Application                   Sending [SNtoIoTDropReply] of size 16 bytes to communication layer
+42.164331266298 SN.node[10].Application                  Received drop reply packet from 1 with LQI = 90 spEnergy = 2.856 message type is MESSAGETYPE_SNTOIOT_DROP_REPLY
+42.164331266298 SN.node[10].Application                  added new SN record
+42.164331266298 SN.node[10].Application                  drop reply packet added/updated at Iot
+42.18272687307  SN.node[4].Application                   sending MESSAGETYPE_SNTOIOT_DROP_REPLY to source = 10
+42.18272687307  SN.node[4].Application                   Sending [SNtoIoTDropReply] of size 16 bytes to communication layer
+42.184026873069 SN.node[10].Application                  Received drop reply packet from 4 with LQI = 6.77381 spEnergy = 2.856 message type is MESSAGETYPE_SNTOIOT_DROP_REPLY
+42.184026873069 SN.node[10].Application                  added new SN record
+42.184026873069 SN.node[10].Application                  drop reply packet added/updated at Iot
+42.259194952279 SN.node[2].Application                   sending MESSAGETYPE_SNTOIOT_DROP_REPLY to source = 10
+42.259194952279 SN.node[2].Application                   Sending [SNtoIoTDropReply] of size 16 bytes to communication layer
+42.33268522609  SN.node[5].Application                   sending MESSAGETYPE_SNTOIOT_DROP_REPLY to source = 10
+42.33268522609  SN.node[5].Application                   Sending [SNtoIoTDropReply] of size 16 bytes to communication layer
+42.369246819456 SN.node[7].Application                   sending MESSAGETYPE_SNTOIOT_DROP_REPLY to source = 10
+42.369246819456 SN.node[7].Application                   Sending [SNtoIoTDropReply] of size 16 bytes to communication layer
+45.044860305856 SN.node[10].Application                  direction check passed and direction is 0
+45.044860305856 SN.node[10].Application                  directin chek passed n datapacketrecord > 0
+45.044860305856 SN.node[10].Application                  distance from id 1is 1
+45.044860305856 SN.node[10].Application                  distance from id 4is 15.0333
+45.044860305856 SN.node[10].Application                  Found best SN with id = 1
+45.044860305856 SN.node[10].Application                  sending 1 data packets to 1
+45.044860305856 SN.node[10].Application                  Sending [genericDataPacket] of size 16 bytes to communication layer
+45.046160305855 SN.node[1].Application                   received dataPacket from IOT 10 with LQI = 95 messageType = MESSAGETYPE_IOTTOSN_DATAPACKET rcvPacketName = genericDataPacket
+45.046160305855 SN.node[1].Application                   created pkt originID=  9
+45.046160305855 SN.node[1].Application                   sink network address is SINK
+45.046160305855 SN.node[1].Application                   Sending [genericDataPacket] of size 16 bytes to communication layer
+45.047460305854 SN.node[0].Application                   Packet reached at sink from SN=1 originator is 9 messageType = MESSAGETYPE_SNTOSINK_DATAPACKET
+48.044863349276 SN.node[10].Application                  direction check passed and direction is 0
+51.044866392696 SN.node[10].Application                  direction check passed and direction is 0
+54.044869436116 SN.node[10].Application                  direction check passed and direction is 0
+57.044872479536 SN.node[10].Application                  direction check passed and direction is 0
+60.044875522956 SN.node[10].Application                  direction check passed and direction is 0
+63.044878566376 SN.node[10].Application                  direction check passed and direction is 0
+66.044881609796 SN.node[10].Application                  direction check passed and direction is 0
+69.044884653216 SN.node[10].Application                  direction check passed and direction is 0
+72.044887696636 SN.node[10].Application                  direction check passed and direction is 0
+75.044890740056 SN.node[10].Application                  direction check passed and direction is 0
+78.044893783476 SN.node[10].Application                  direction check passed and direction is 0
+81.044896826896 SN.node[10].Application                  direction check passed and direction is 0
+100             SN.node[0].Application                   Control packets received = 0
+100             SN.node[0].Application                   Control packets sent 0
+100             SN.node[0].Application                   Data packets received = 1
+100             SN.node[0].Application                   Data packets sent 0
+100             SN.node[1].Application                   Control packets received = 1
+100             SN.node[1].Application                   Control packets sent 1
+100             SN.node[1].Application                   Data packets received = 1
+100             SN.node[1].Application                   Data packets sent 1
+100             SN.node[2].Application                   Control packets received = 1
+100             SN.node[2].Application                   Control packets sent 1
+100             SN.node[2].Application                   Data packets received = 0
+100             SN.node[2].Application                   Data packets sent 0
+100             SN.node[3].Application                   Control packets received = 0
+100             SN.node[3].Application                   Control packets sent 0
+100             SN.node[3].Application                   Data packets received = 0
+100             SN.node[3].Application                   Data packets sent 0
+100             SN.node[4].Application                   Control packets received = 1
+100             SN.node[4].Application                   Control packets sent 1
+100             SN.node[4].Application                   Data packets received = 0
+100             SN.node[4].Application                   Data packets sent 0
+100             SN.node[5].Application                   Control packets received = 1
+100             SN.node[5].Application                   Control packets sent 1
+100             SN.node[5].Application                   Data packets received = 0
+100             SN.node[5].Application                   Data packets sent 0
+100             SN.node[6].Application                   Control packets received = 0
+100             SN.node[6].Application                   Control packets sent 0
+100             SN.node[6].Application                   Data packets received = 0
+100             SN.node[6].Application                   Data packets sent 0
+100             SN.node[7].Application                   Control packets received = 1
+100             SN.node[7].Application                   Control packets sent 1
+100             SN.node[7].Application                   Data packets received = 0
+100             SN.node[7].Application                   Data packets sent 0
+100             SN.node[8].Application                   Control packets received = 0
+100             SN.node[8].Application                   Control packets sent 0
+100             SN.node[8].Application                   Data packets received = 0
+100             SN.node[8].Application                   Data packets sent 0
+100             SN.node[9].Application                   Control packets received = 1
+100             SN.node[9].Application                   Control packets sent 1
+100             SN.node[9].Application                   Data packets received = 0
+100             SN.node[9].Application                   Data packets sent 1
+100             SN.node[10].Application                  Control packets received = 3
+100             SN.node[10].Application                  Control packets sent 2
+100             SN.node[10].Application                  Data packets received = 1
+100             SN.node[10].Application                  Data packets sent 1

@@ -1,0 +1,199 @@
+
+0.027539895218  SN.node[0].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.129287895217  SN.node[9].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.129287895217  SN.node[9].Application                   Got the value: 40.083
+0.025697166973  SN.node[0].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.127445166972  SN.node[1].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.127445166972  SN.node[1].Application                   Got the value: 40.169
+0.127445166972  SN.node[4].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.127445166972  SN.node[4].Application                   Got the value: 40.169
+0.043506206618  SN.node[0].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.036425359605  SN.node[0].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.079485359604  SN.node[4].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.079485359604  SN.node[4].Application                   Got the value: 39.976
+0.005674423358  SN.node[0].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.027774423357  SN.node[7].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.027774423357  SN.node[7].Application                   Got the value: 40.013
+0.054211420713  SN.node[1].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.054211420713  SN.node[1].Application                   Got the value: 40.013
+0.054211420713  SN.node[2].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.054211420713  SN.node[2].Application                   Got the value: 40.013
+0.054211420713  SN.node[3].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.054211420713  SN.node[3].Application                   Got the value: 40.013
+0.054211420713  SN.node[10].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+0.054211420713  SN.node[10].Application                  Got the value: 40.013
+0.018255278875  SN.node[0].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.01481245819   SN.node[0].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.263280458189  SN.node[1].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.263280458189  SN.node[1].Application                   Got the value: 40.067
+0.263280458189  SN.node[2].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.263280458189  SN.node[2].Application                   Got the value: 40.067
+0.263280458189  SN.node[4].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.263280458189  SN.node[4].Application                   Got the value: 40.067
+0.515311726774  SN.node[9].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.515311726774  SN.node[9].Application                   Got the value: 40.067
+0.764304377956  SN.node[3].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.764304377956  SN.node[3].Application                   Got the value: 40.067
+0.768222551844  SN.node[8].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.768222551844  SN.node[8].Application                   Got the value: 40.067
+0.768222551844  SN.node[13].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+0.768222551844  SN.node[13].Application                  Got the value: 40.067
+1.028257616316  SN.node[10].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+1.028257616316  SN.node[10].Application                  Got the value: 40.067
+1.028257616316  SN.node[14].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+1.028257616316  SN.node[14].Application                  Got the value: 40.067
+1.532214608357  SN.node[11].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+1.532214608357  SN.node[11].Application                  Got the value: 40.067
+1.532214608357  SN.node[15].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+1.532214608357  SN.node[15].Application                  Got the value: 40.067
+2.047857613369  SN.node[6].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+2.047857613369  SN.node[6].Application                   Got the value: 40.067
+0.026095785747  SN.node[0].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.010050179646  SN.node[0].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.107606179645  SN.node[1].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.107606179645  SN.node[1].Application                   Got the value: 40.167
+0.107606179645  SN.node[4].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.107606179645  SN.node[4].Application                   Got the value: 40.167
+0.107606179645  SN.node[5].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.107606179645  SN.node[5].Application                   Got the value: 40.167
+0.107606179645  SN.node[6].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.107606179645  SN.node[6].Application                   Got the value: 40.167
+0.107606179645  SN.node[10].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+0.107606179645  SN.node[10].Application                  Got the value: 40.167
+0.319305869209  SN.node[11].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+0.319305869209  SN.node[11].Application                  Got the value: 40.167
+0.029884079098  SN.node[0].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.042599274648  SN.node[0].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.089851274647  SN.node[4].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.089851274647  SN.node[4].Application                   Got the value: 40.121
+0.089851274647  SN.node[5].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.089851274647  SN.node[5].Application                   Got the value: 40.121
+0.144106074649  SN.node[1].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.144106074649  SN.node[1].Application                   Got the value: 40.121
+0.144106074649  SN.node[2].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.144106074649  SN.node[2].Application                   Got the value: 40.121
+0.144106074649  SN.node[9].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.144106074649  SN.node[9].Application                   Got the value: 40.121
+0.191468055524  SN.node[8].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.191468055524  SN.node[8].Application                   Got the value: 40.121
+0.241479958398  SN.node[10].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+0.241479958398  SN.node[10].Application                  Got the value: 40.121
+0.241479958398  SN.node[13].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+0.241479958398  SN.node[13].Application                  Got the value: 40.121
+0.241479958398  SN.node[14].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+0.241479958398  SN.node[14].Application                  Got the value: 40.121
+0.241479958398  SN.node[15].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+0.241479958398  SN.node[15].Application                  Got the value: 40.121
+0.349190643607  SN.node[6].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.349190643607  SN.node[6].Application                   Got the value: 40.121
+0.349190643607  SN.node[11].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+0.349190643607  SN.node[11].Application                  Got the value: 40.121
+0.349190643607  SN.node[12].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+0.349190643607  SN.node[12].Application                  Got the value: 40.121
+0.447718021707  SN.node[7].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.447718021707  SN.node[7].Application                   Got the value: 40.121
+0.0053032452    SN.node[0].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.052555245199  SN.node[1].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.052555245199  SN.node[1].Application                   Got the value: 40.027
+0.03306644744   SN.node[0].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.428254447439  SN.node[8].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.428254447439  SN.node[8].Application                   Got the value: 40.114
+0.825243154442  SN.node[9].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.825243154442  SN.node[9].Application                   Got the value: 40.114
+0.825243154442  SN.node[12].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+0.825243154442  SN.node[12].Application                  Got the value: 40.114
+0.825243154442  SN.node[13].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+0.825243154442  SN.node[13].Application                  Got the value: 40.114
+1.228808662432  SN.node[10].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+1.228808662432  SN.node[10].Application                  Got the value: 40.114
+1.228808662432  SN.node[14].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+1.228808662432  SN.node[14].Application                  Got the value: 40.114
+1.228808662432  SN.node[15].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+1.228808662432  SN.node[15].Application                  Got the value: 40.114
+1.634925232461  SN.node[6].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+1.634925232461  SN.node[6].Application                   Got the value: 40.114
+2.02827820202   SN.node[7].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+2.02827820202   SN.node[7].Application                   Got the value: 40.114
+2.02827820202   SN.node[11].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+2.02827820202   SN.node[11].Application                  Got the value: 40.114
+2.82787666103   SN.node[3].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+2.82787666103   SN.node[3].Application                   Got the value: 40.114
+0.024905471818  SN.node[0].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.420093471817  SN.node[5].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.420093471817  SN.node[5].Application                   Got the value: 40.444
+0.420093471817  SN.node[9].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.420093471817  SN.node[9].Application                   Got the value: 40.444
+0.817910562167  SN.node[1].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.817910562167  SN.node[1].Application                   Got the value: 40.444
+0.817910562167  SN.node[4].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.817910562167  SN.node[4].Application                   Got the value: 40.444
+0.817910562167  SN.node[8].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.817910562167  SN.node[8].Application                   Got the value: 40.444
+1.213664877047  SN.node[2].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+1.213664877047  SN.node[2].Application                   Got the value: 40.444
+0.039870103169  SN.node[0].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.029889937734  SN.node[0].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.186133937733  SN.node[5].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.186133937733  SN.node[5].Application                   Got the value: 40.11
+0.346391660213  SN.node[1].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.346391660213  SN.node[1].Application                   Got the value: 40.11
+0.346391660213  SN.node[4].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.346391660213  SN.node[4].Application                   Got the value: 40.11
+0.346391660213  SN.node[8].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.346391660213  SN.node[8].Application                   Got the value: 40.11
+0.346391660213  SN.node[9].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.346391660213  SN.node[9].Application                   Got the value: 40.11
+0.671137151936  SN.node[12].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+0.671137151936  SN.node[12].Application                  Got the value: 40.11
+0.047522752278  SN.node[0].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.124118752277  SN.node[1].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.124118752277  SN.node[1].Application                   Got the value: 40
+0.124118752277  SN.node[2].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.124118752277  SN.node[2].Application                   Got the value: 40
+0.124118752277  SN.node[9].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.124118752277  SN.node[9].Application                   Got the value: 40
+0.207591791004  SN.node[4].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.207591791004  SN.node[4].Application                   Got the value: 40
+0.207591791004  SN.node[12].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+0.207591791004  SN.node[12].Application                  Got the value: 40
+0.207591791004  SN.node[13].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+0.207591791004  SN.node[13].Application                  Got the value: 40
+0.207591791004  SN.node[14].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+0.207591791004  SN.node[14].Application                  Got the value: 40
+0.369054960045  SN.node[8].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.369054960045  SN.node[8].Application                   Got the value: 40
+0.445783957633  SN.node[6].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.445783957633  SN.node[6].Application                   Got the value: 40
+0.607158343793  SN.node[10].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+0.607158343793  SN.node[10].Application                  Got the value: 40
+0.688359912403  SN.node[5].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.688359912403  SN.node[5].Application                   Got the value: 40
+0.688359912403  SN.node[15].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+0.688359912403  SN.node[15].Application                  Got the value: 40
+0.853570422343  SN.node[11].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+0.853570422343  SN.node[11].Application                  Got the value: 40
+0.944645145646  SN.node[3].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.944645145646  SN.node[3].Application                   Got the value: 40
+0.944645145646  SN.node[7].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.944645145646  SN.node[7].Application                   Got the value: 40
+0.037256390764  SN.node[0].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.113852390763  SN.node[1].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.113852390763  SN.node[1].Application                   Got the value: 39.806
+0.113852390763  SN.node[4].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.113852390763  SN.node[4].Application                   Got the value: 39.806
+0.196687325319  SN.node[2].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.196687325319  SN.node[2].Application                   Got the value: 39.806
+0.275725207839  SN.node[8].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.275725207839  SN.node[8].Application                   Got the value: 39.806
+0.284327783099  SN.node[6].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.284327783099  SN.node[6].Application                   Got the value: 39.806
+0.354771906482  SN.node[12].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+0.354771906482  SN.node[12].Application                  Got the value: 39.806
+0.363423389329  SN.node[7].Application                   Sending [App generic packet] of size 10 bytes to communication layer
+0.363423389329  SN.node[7].Application                   Got the value: 39.806
+0.438101711891  SN.node[13].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+0.438101711891  SN.node[13].Application                  Got the value: 39.806
+0.455797279922  SN.node[11].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+0.455797279922  SN.node[11].Application                  Got the value: 39.806
+0.543889275256  SN.node[14].Application                  Sending [App generic packet] of size 10 bytes to communication layer
+0.543889275256  SN.node[14].Application                  Got the value: 39.806

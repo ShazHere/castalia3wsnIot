@@ -1,0 +1,82 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+struct Packet {
+    int pid;
+    double data;
+};
+struct Sn {
+    int SnId;
+    double spentEnergy;
+    Packet *packet;
+};   
+
+class Node {
+    //other stuff
+    private:
+    vector<Sn> SnRecord;
+    
+    public:
+    int getBestSn(Sn* &bestSn);
+    void someFunction();
+    void sendRecord(Sn* bestSn);
+};
+
+int main()
+{
+   Node nd;
+   nd.someFunction();
+
+   return 0;
+}
+void Node::someFunction() {
+    
+    //adding some records in vector just for testing purpose
+    Sn temp;
+    Packet *pkt = new Packet(); pkt->pid = 111; pkt->data = 555;
+    temp.SnId = 1; temp.spentEnergy = 5; temp.packet = pkt;
+    SnRecord.push_back(temp);
+    
+    // pkt->pid = 222; pkt->data = 1010;
+    // temp.SnId = 2; temp.spentEnergy = 10;
+    // SnRecord.push_back(temp);
+    
+    // pkt->pid = 333; pkt->data = 888;
+    // temp.SnId = 3; temp.spentEnergy = 8;
+    // SnRecord.push_back(temp);
+    cout << "Size of SnReocord is " << SnRecord.size() << endl;
+    
+    //choosing best sn
+    Sn *bestSn;
+    
+    int returnCode = -1;
+    returnCode = getBestSn(bestSn);
+    if (returnCode == 0){ //means there is a best SN
+        cout<< "Found best SN with id = "<< bestSn->SnId << endl;
+    }
+    else {
+        cout <<"NO SN "<< endl;
+    }
+    sendRecord(bestSn);
+}
+
+int Node::getBestSn(Sn* &bestSn) {
+    int tblSize = (int)SnRecord.size();
+    if (tblSize == 0)
+        return -1;
+//here i have to assign *bestSn a selected value from vector
+//suppose SnRecord[2] is best Sn 
+
+    cout << "Best sn id is " << SnRecord[0].SnId<< endl; //works OK, 
+    bestSn = &SnRecord[0]; ///// giving me core dump ERROR
+    return 0;
+}
+void Node::sendRecord(Sn* bestSn) {
+    cout<< "checking best SN id is " << bestSn->SnId << endl;
+    cout<< "bestSn packet id is " << bestSn->packet->pid << endl;
+}
+
+
+
+

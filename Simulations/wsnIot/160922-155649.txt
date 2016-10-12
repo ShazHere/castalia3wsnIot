@@ -1,0 +1,269 @@
+Castalia| what:General (1)
+Castalia| when:2016-09-22 15:56
+Castalia| label:General
+Castalia|	module:SN.node[0].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			3 Failed with NO interference
+Castalia|			1 Failed, below sensitivity
+Castalia|			12 Received with NO interference
+Castalia|	module:SN.node[0].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			6 filtered, other dest
+Castalia|			6 received data pkts
+Castalia|	module:SN.node[0].Application
+Castalia|		 index:0 simple output name:Control Packets received
+Castalia|			0 ID
+Castalia|		 index:0 simple output name:Control Packets sent
+Castalia|			0 ID
+Castalia|		 index:0 simple output name:Data Packets received
+Castalia|			5 ID
+Castalia|		 index:0 simple output name:Data Packets sent
+Castalia|			0 ID
+Castalia|	module:SN.node[1].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			6.79964 
+Castalia|		simple output name:Consumed Remaing
+Castalia|			18713.2 
+Castalia|	module:SN.node[1].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			2 Failed with NO interference
+Castalia|			1 Failed, below sensitivity
+Castalia|			7 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			6 TX pkts
+Castalia|	module:SN.node[1].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			6 Received from App
+Castalia|			1 filtered, other dest
+Castalia|			6 received data pkts
+Castalia|			6 sent data pkts
+Castalia|	module:SN.node[1].Application
+Castalia|		 index:1 simple output name:Control Packets received
+Castalia|			1 ID
+Castalia|		 index:1 simple output name:Control Packets sent
+Castalia|			1 ID
+Castalia|		 index:1 simple output name:Data Packets received
+Castalia|			5 ID
+Castalia|		 index:1 simple output name:Data Packets sent
+Castalia|			5 ID
+Castalia|	module:SN.node[2].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			6.79756 
+Castalia|		simple output name:Consumed Remaing
+Castalia|			18713.2 
+Castalia|	module:SN.node[2].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			7 Failed, below sensitivity
+Castalia|			14 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1 TX pkts
+Castalia|	module:SN.node[2].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			1 Received from App
+Castalia|			13 filtered, other dest
+Castalia|			1 received data pkts
+Castalia|			1 sent data pkts
+Castalia|	module:SN.node[2].Application
+Castalia|		 index:2 simple output name:Control Packets received
+Castalia|			1 ID
+Castalia|		 index:2 simple output name:Control Packets sent
+Castalia|			1 ID
+Castalia|		 index:2 simple output name:Data Packets received
+Castalia|			0 ID
+Castalia|		 index:2 simple output name:Data Packets sent
+Castalia|			0 ID
+Castalia|	module:SN.node[3].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			6.79711 
+Castalia|		simple output name:Consumed Remaing
+Castalia|			18713.2 
+Castalia|	module:SN.node[3].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			9 Failed with NO interference
+Castalia|			6 Failed, below sensitivity
+Castalia|			5 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1 TX pkts
+Castalia|	module:SN.node[3].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			1 Received from App
+Castalia|			4 filtered, other dest
+Castalia|			1 received data pkts
+Castalia|			1 sent data pkts
+Castalia|	module:SN.node[3].Application
+Castalia|		 index:3 simple output name:Control Packets received
+Castalia|			1 ID
+Castalia|		 index:3 simple output name:Control Packets sent
+Castalia|			1 ID
+Castalia|		 index:3 simple output name:Data Packets received
+Castalia|			0 ID
+Castalia|		 index:3 simple output name:Data Packets sent
+Castalia|			0 ID
+Castalia|	module:SN.node[4].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			6.79898 
+Castalia|		simple output name:Consumed Remaing
+Castalia|			18713.2 
+Castalia|	module:SN.node[4].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			7 Failed, below sensitivity
+Castalia|			13 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1 TX pkts
+Castalia|	module:SN.node[4].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			1 Received from App
+Castalia|			12 filtered, other dest
+Castalia|			1 received data pkts
+Castalia|			1 sent data pkts
+Castalia|	module:SN.node[4].Application
+Castalia|		 index:4 simple output name:Control Packets received
+Castalia|			1 ID
+Castalia|		 index:4 simple output name:Control Packets sent
+Castalia|			1 ID
+Castalia|		 index:4 simple output name:Data Packets received
+Castalia|			0 ID
+Castalia|		 index:4 simple output name:Data Packets sent
+Castalia|			0 ID
+Castalia|	module:SN.node[5].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			6.79959 
+Castalia|		simple output name:Consumed Remaing
+Castalia|			18713.2 
+Castalia|	module:SN.node[5].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			6 Failed with NO interference
+Castalia|			1 Failed, below sensitivity
+Castalia|			15 Received with NO interference
+Castalia|	module:SN.node[5].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			14 filtered, other dest
+Castalia|			1 received data pkts
+Castalia|	module:SN.node[5].Application
+Castalia|		 index:5 simple output name:Control Packets received
+Castalia|			0 ID
+Castalia|		 index:5 simple output name:Control Packets sent
+Castalia|			0 ID
+Castalia|		 index:5 simple output name:Data Packets received
+Castalia|			0 ID
+Castalia|		 index:5 simple output name:Data Packets sent
+Castalia|			0 ID
+Castalia|	module:SN.node[6].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			6.79826 
+Castalia|		simple output name:Consumed Remaing
+Castalia|			18713.2 
+Castalia|	module:SN.node[6].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			1 Failed with NO interference
+Castalia|			14 Failed, below sensitivity
+Castalia|			7 Received with NO interference
+Castalia|	module:SN.node[6].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			6 filtered, other dest
+Castalia|			1 received data pkts
+Castalia|	module:SN.node[6].Application
+Castalia|		 index:6 simple output name:Control Packets received
+Castalia|			0 ID
+Castalia|		 index:6 simple output name:Control Packets sent
+Castalia|			0 ID
+Castalia|		 index:6 simple output name:Data Packets received
+Castalia|			0 ID
+Castalia|		 index:6 simple output name:Data Packets sent
+Castalia|			0 ID
+Castalia|	module:SN.node[7].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			6.79806 
+Castalia|		simple output name:Consumed Remaing
+Castalia|			18713.2 
+Castalia|	module:SN.node[7].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			11 Failed with NO interference
+Castalia|			6 Failed, below sensitivity
+Castalia|			3 Received with NO interference
+Castalia|	module:SN.node[7].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			3 filtered, other dest
+Castalia|	module:SN.node[7].Application
+Castalia|		 index:7 simple output name:Control Packets received
+Castalia|			0 ID
+Castalia|		 index:7 simple output name:Control Packets sent
+Castalia|			0 ID
+Castalia|		 index:7 simple output name:Data Packets received
+Castalia|			0 ID
+Castalia|		 index:7 simple output name:Data Packets sent
+Castalia|			0 ID
+Castalia|	module:SN.node[8].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			6.79696 
+Castalia|		simple output name:Consumed Remaing
+Castalia|			18713.2 
+Castalia|	module:SN.node[8].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			15 Failed, below sensitivity
+Castalia|			7 Received with NO interference
+Castalia|	module:SN.node[8].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			6 filtered, other dest
+Castalia|			1 received data pkts
+Castalia|	module:SN.node[8].Application
+Castalia|		 index:8 simple output name:Control Packets received
+Castalia|			0 ID
+Castalia|		 index:8 simple output name:Control Packets sent
+Castalia|			0 ID
+Castalia|		 index:8 simple output name:Data Packets received
+Castalia|			0 ID
+Castalia|		 index:8 simple output name:Data Packets sent
+Castalia|			0 ID
+Castalia|	module:SN.node[9].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			6.79831 
+Castalia|		simple output name:Consumed Remaing
+Castalia|			18713.2 
+Castalia|	module:SN.node[9].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			15 Failed, below sensitivity
+Castalia|			1 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			6 TX pkts
+Castalia|	module:SN.node[9].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			6 Received from App
+Castalia|			1 received data pkts
+Castalia|			6 sent data pkts
+Castalia|	module:SN.node[9].Application
+Castalia|		 index:9 simple output name:Control Packets received
+Castalia|			1 ID
+Castalia|		 index:9 simple output name:Control Packets sent
+Castalia|			1 ID
+Castalia|		 index:9 simple output name:Data Packets received
+Castalia|			0 ID
+Castalia|		 index:9 simple output name:Data Packets sent
+Castalia|			5 ID
+Castalia|	module:SN.node[10].ResourceManager
+Castalia|		simple output name:Consumed Energy
+Castalia|			6.79679 
+Castalia|		simple output name:Consumed Remaing
+Castalia|			18713.2 
+Castalia|	module:SN.node[10].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			1 Failed with NO interference
+Castalia|			1 Failed, below sensitivity
+Castalia|			13 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			7 TX pkts
+Castalia|	module:SN.node[10].Communication.MAC
+Castalia|		simple output name:TunableMAC packet breakdown
+Castalia|			7 Received from App
+Castalia|			5 filtered, other dest
+Castalia|			8 received data pkts
+Castalia|			7 sent data pkts
+Castalia|	module:SN.node[10].Application
+Castalia|		 index:10 simple output name:Control Packets received
+Castalia|			3 ID
+Castalia|		 index:10 simple output name:Control Packets sent
+Castalia|			2 ID
+Castalia|		 index:10 simple output name:Data Packets received
+Castalia|			5 ID
+Castalia|		 index:10 simple output name:Data Packets sent
+Castalia|			5 ID

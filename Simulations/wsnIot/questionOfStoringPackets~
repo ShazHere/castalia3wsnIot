@@ -1,0 +1,102 @@
+Dear all,
+
+I am unable to store packets and resend to network layer. I really need help here.
+
+If i use pointer to store a packet,and later use the same pointer to access the packet and its details, it give me 'Segmentation fault (core dumped)' error
+
+If I don't use a pointer, rather simply copy the packet, the packet isn't properly copied. When I send the address of the copied object to toNetworkLayer () method it gives 'free() invalid pointer' error.
+
+In case of storing pointer, following is used:
+
+struct DataPacketRecord {
+    int oringinatorId;
+    GenericPacket *gp;
+};
+vector<DataPacketRecord> dataPacketRecord;
+
+to store I use statements:
+GenericPacket *rcvpkt = check_and_cast<GenericPacket*>
+(rcvPacket);
+    DataPacketRecord idpr;
+ 
+    idpr.oringinatorId = rcvpkt->getExtraData().OriginNodeID;
+    idpr.gp = rcvpkt;
+    dataPacketRecord.push_back(idpr);
+
+And access even for trace messages:
+
+trace() << "Checking datapacketRecord messageType = " << dataPacketRecord[0].gp->getData() << " and Name = "
+            << dataPacketRecord[0].gp->getName();
+
+ And error is 'Segmentation fault (core dump)'
+
+For storing by copying packet I use:
+
+struct DataPacketRecord {
+    int oringinatorId;
+    GenericPacket gp;
+};
+vector<DataPacketRecord> dataPacketRecord;
+
+to store I use statements:
+GenericPacket *rcvpkt = check_and_cast<GenericPacket*>
+(rcvPacket);
+    DataPacketRecord idpr;
+ 
+    idpr.oringinatorId = rcvpkt->getExtraData().OriginNodeID;
+    idpr.gp = *rcvpkt;
+    dataPacketRecord.push_back(idpr);
+
+And access for trace message is fine (except name of packet isn't printed) but when I send packet toNetworkLayer it gives
+
+toNetworkLayer(&(dataPacketRecord[0].gp),BROADCAST_NETWORK_ADDRESS);
+
+It gives error 'free() invalid pointer'.
+
+NOw can someone guide how should I store packets at application layer??
+
+
+
+On Wednesday, August 31, 2016 at 12:47:42 PM UTC+4, Shaz wrote:
+
+    Dear all,
+
+    Has anyone tried to store the data packets at application layer and then resend them?
+
+    In my case its giving error.
+
+    Details after simplifications:
+
+    In headerfile I have struct:
+
+    struct DataPacketRecord {
+        int oringinatorId;
+        GenericPacket gp;
+    };
+    vector<DataPacketRecord> dataPacketRecord;
+
+    in .cpp file of application layer:
+
+    In method fromNetworkLayer()
+
+        GenericPacket *rcvpkt = check_and_cast<GenericPacket*>(rcvPacket);
+        DataPacketRecord idpr;
+     
+        idpr.oringinatorId = rcvpkt->getExtraData().OriginNodeID;
+        idpr.gp = *rcvpkt;
+        dataPacketRecord.push_back(idpr);
+
+    In timerFiredCallback I have following chunk:
+
+    trace() << "messageType = " << dataPacketRecord[0].gp.getData() << " and Name = "
+                            << dataPacketRecord[0].gp.getName() << " sequenceNo =  " << dataPacketRecord[0].gp.getSequenceNumber();
+                   toNetworkLayer(&(dataPacketRecord[0].gp),BROADCAST_NETWORK_ADDRESS);
+
+    //IF I comment "toNetwrokLayer ()" line,  then trace gives this output (after cleaning the output)
+     Checking datapacketRecord messageType = 5 and Name =
+     messageType = 5 and Name =  sequenceNo = 0
+
+    Which is expected output. If I don't comment, then gives error:
+    free(): invalid pointer:
+
+    Any ideas what is making this error.?
