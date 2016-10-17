@@ -41,8 +41,8 @@ enum NodeSensorTimers {
 class NodeSensor:  public VirtualApplication {
 private:
    // parameters and variables
-   //int packetsPerNode;
-   int packetSize;
+   int totalIotNodes; // to track total number of Iot nodes used
+   double packet_rate;
    int controlPacketsReceived;
    int controlPacketsSent;
    int dataPacketsSent;
@@ -52,6 +52,12 @@ private:
    vector<iotProposalRecord> proposalRecord;
    vector<generatedDataPacketRecord> dataPacketRecord;
    vector<int> sourcesForDropReply;
+
+   //variables below are used to determine the packet delivery rates.
+       int numNodes;
+       map<long,int> packetsReceived;
+       map<long,int> bytesReceived;
+       map<long,int> packetsSent;
 
    //user defined functions
    bool usefulProposal(IotToSnReplyPacket *rcvpkt);
@@ -67,13 +73,19 @@ private:
 public:
     NodeSensor();
     virtual ~NodeSensor();
+
+    //functions below are used to determine the packet delivery rates.
+    int getPacketsSent(int addr) { return packetsSent[addr]; }
+    int getPacketsReceived(int addr) { return packetsReceived[addr]; }
+    int getBytesReceived(int addr) { return bytesReceived[addr]; }
+
 protected:
     void startup();
     void fromNetworkLayer(ApplicationPacket *, const char *, double, double);
     void timerFiredCallback(int);
 
     void finishSpecific();
-   // void updateNeighborTable(int nodeID, int theSN);
+
 };
 
 #endif /* NODESENSOR_H_ */

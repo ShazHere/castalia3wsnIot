@@ -54,7 +54,7 @@ private:
     char *packetReceivedSource;
     double rssi;
     double lqi;
-    int packetSize;
+    //int packetSize;
 
     bool justReturned; // for keeping track of mobility direction of Iot. True means just took turn and should send drop replies
     // False means that either direction is towards sink or it has returned from quite some time.

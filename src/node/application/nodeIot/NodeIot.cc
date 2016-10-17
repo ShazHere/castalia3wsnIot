@@ -38,6 +38,7 @@ void NodeIot::startup()
     //From connectivityApp
     trace() << "Alhumdulillah; This is startup() of NodeIot "
             << getLocationText();
+    //trace() << "constantDataPayLoad is"  << constantDataPayload;
     //fix sink location, make consistent with omnetpp.ini of project
     sinkX = 1;
     sinkY = 0;
@@ -49,7 +50,6 @@ void NodeIot::startup()
 
     dataPacketRecord.clear();
     dropReplySnRecord.clear();
-
 
     //double startTxTime = 10; //I think it sets the start time of packets sent according to simulation time
     //setTimer(SEND_PACKET, startTxTime);
@@ -80,7 +80,7 @@ void NodeIot::fromNetworkLayer(ApplicationPacket * rcvPacket, const char *source
         pkt->setExtraData(temp);
         pkt->setData(MESSAGETYPE_IOTTOSN_SEARCHREPLY); //according to messageType defined in GenericPacket.msg comments.
         pkt->setSequenceNumber(controlPacketsSent);
-        pkt->setByteLength(packetSize);
+        //pkt->setByteLength(packetSize);
         toNetworkLayer(pkt, source);
         controlPacketsSent++;
         break;
@@ -102,7 +102,6 @@ void NodeIot::fromNetworkLayer(ApplicationPacket * rcvPacket, const char *source
                            << " message type in data is " << getMessageTypeText(rcvPacket->getData());
         addDataPacketRecord(rcvpkt, source);
         //send this data to sink node? or dropPacket messages?
-
         break;
     }
     }
@@ -146,6 +145,8 @@ bool NodeIot::addDataPacketRecord(GenericPacket *rcvpkt, string source) {
     idpr.isDropCheked = false;
     idpr.senderID = std::stoi(source); //tested working
     idpr.gp = rcvpkt->dup();
+    // Reset the size of the packet, otherwise the app overhead will keep adding on
+    idpr.gp->setByteLength(0);
     updateDataPacketRecord(idpr);
     return true;
 }
@@ -216,7 +217,7 @@ void NodeIot::timerFiredCallback(int timerIndex)
                     pkt->setExtraData(temp);
                     pkt->setData(MESSAGETYPE_IOTTOSN_DROPTOSEARCHSN); //according to messageType defined in GenericPacket.msg comments.
                     pkt->setSequenceNumber(controlPacketsSent); //TODO: Check what should be sequence no.
-                    pkt->setByteLength(packetSize); //TODO: check what should be data packet size
+                    //pkt->setByteLength(packetSize); //TODO: check what should be data packet size
                     toNetworkLayer(pkt,BROADCAST_NETWORK_ADDRESS);
                     controlPacketsSent++;
                     break; //one drop boradcast message is enough to get replies from SN's

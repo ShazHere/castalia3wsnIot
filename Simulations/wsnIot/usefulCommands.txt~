@@ -1,9 +1,11 @@
-# author Shaza
-# Description: save some useful castaliaResults and CastaliaPlot output commands so that I don't have 
+# Author: Shaza
+# Description: Saves some useful castaliaResults and CastaliaPlot output commands so that I don't have 
 # to do research on them again and again. 
 
 
 # to take histogram output of energy consumed by all nodes
 CastaliaResults -i 160919-103302.txt -s energy -n | CastaliaPlot -o energy-160919-103302.jpg -s histogram
+
+# to make energy plots for varyPayload:
 
 

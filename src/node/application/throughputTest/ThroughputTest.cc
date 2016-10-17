@@ -25,11 +25,12 @@ void ThroughputTest::startup()
 	dataSN = 0;
 	
 	numNodes = getParentModule()->getParentModule()->par("numNodes");
+
 	packetsSent.clear();
 	packetsReceived.clear();
 	bytesReceived.clear();
-
-	if (packet_spacing > 0 && recipientAddress.compare(SELF_NETWORK_ADDRESS) != 0)
+if (9 == self)
+	//if (packet_spacing > 0 && recipientAddress.compare(SELF_NETWORK_ADDRESS) != 0)
 		setTimer(SEND_PACKET, packet_spacing + startupDelay);
 	else
 		trace() << "Not sending packets";
@@ -67,11 +68,15 @@ void ThroughputTest::timerFiredCallback(int index)
 {
 	switch (index) {
 		case SEND_PACKET:{
-			trace() << "Sending packet #" << dataSN;
-			toNetworkLayer(createGenericDataPacket(0, dataSN), recipientAddress.c_str());
-			packetsSent[recipientId]++;
-			dataSN++;
-			setTimer(SEND_PACKET, packet_spacing);
+		    int totalPackets = 5;
+		    trace() << "Sending packet #" << dataSN;
+		    trace ()<< "sending " << totalPackets;
+		    for (int i = 0 ; i < totalPackets; i++) {
+		        toNetworkLayer(createGenericDataPacket(0, dataSN), recipientAddress.c_str());
+		        packetsSent[recipientId]++;
+		        dataSN++;
+		    }
+		    //setTimer(SEND_PACKET, packet_spacing);
 			break;
 		}
 	}
@@ -100,9 +105,9 @@ void ThroughputTest::finishSpecific() {
 	for (int i = 0; i < numNodes; i++) {
 		ThroughputTest *appModule = dynamic_cast<ThroughputTest*>
 			(topo->getNode(i)->getModule()->getSubmodule("Application"));
-		trace() << "value of i is " << i << " and self is " << self;
+		//trace() << "value of i is " << i << " and self is " << self;
 		if (appModule) {
-			trace() << " appModule True" << "value of i is " << i << " and self is " << self;
+			//trace() << " appModule True" << "value of i is " << i << " and self is " << self;
 			int packetsSent = appModule->getPacketsSent(self);
 			if (packetsSent > 0) { // this node sent us some packets
 				trace() << " packetsSent > 0 ";
@@ -115,8 +120,9 @@ void ThroughputTest::finishSpecific() {
 		}
 	}
 	delete(topo);
-
+	trace() << "bytes delivered are: " << bytesDelivered;
 	if (packet_rate > 0 && bytesDelivered > 0) {
+	    trace()<< "packet_rate condition true";
 		double energy = (resMgrModule->getSpentEnergy() * 1000000000)/(bytesDelivered * 8);	//in nanojoules/bit
 		declareOutput("Energy nJ/bit");
 		collectOutput("Energy nJ/bit","",energy);

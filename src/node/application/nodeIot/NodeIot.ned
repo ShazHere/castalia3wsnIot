@@ -25,21 +25,28 @@ package node.application.nodeIot;
 
 simple NodeIot like node.application.iApplication {
  parameters:
+    int totalIotNodes = default (1); 
+     
  	string applicationID = default("wsnIot");// ("nodeIot");
 	bool collectTraceInfo = default (false);
-	int packetHeaderOverhead = default (8);
 	int priority = default (1);
-	int constantDataPayload = default (8);
+	int packetHeaderOverhead = default (5); //5 in throughput //8 default
+	int constantDataPayload = default (100);  //100 in throughtput //8 default
+	double delayLimit = default (0); 			// application delay limit (0 - no limit)
+											// discard packets arriving after the limit
 
-//application specific parameters, not defined in iApplication
-	//inspired by connectivityMap app
-	int packetSpacing = default (100);	// in ms
-	int packetsPerNode = default (100);
-	int packetSize = default (32);	// in bytes
+	string nextRecipient = default ("0");	// Destination for packets received in this node. 
+											// These parameters can be used to create an
+											// application-level static routing. This way we can
+											// have a multi-hop throughput test   
 	
 //inspired by throughtput app
 	double packet_rate = default (0);	// packets per second, by default we transmit no packets
 	double startupDelay = default (0);	// delay in seconds before the app stars producing packets
+	bool isSink = default (false);//to check if it should work
+
+	double latencyHistogramMax = default (200);
+	int latencyHistogramBuckets = default (10);
 	
  gates:
  	output toCommunicationModule;

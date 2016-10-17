@@ -32,6 +32,7 @@ void NodeSensor::generateDataPacket(int originatorId) {
 
 void NodeSensor::startup()
 {
+    packet_rate = par("packet_rate");
     isSink = par("isSink");
     if (isSink) {
         trace() << "Alhumdulillah; This is startup() of NodeSensor and SINK "
@@ -40,6 +41,8 @@ void NodeSensor::startup()
     else
         trace() << "Alhumdulillah; This is startup() of NodeSensor "
         << getLocationText();
+
+    //trace() << "constantDataPayLoad is"  << constantDataPayload;
     dataPacketsSent = 0; //means no packet is sent so far
     controlPacketsSent = 0;
     dataPacketsReceived = 0;
@@ -47,6 +50,14 @@ void NodeSensor::startup()
     proposalRecord.clear();
     dataPacketRecord.clear();
 
+    packetsSent.clear();
+    packetsReceived.clear();
+    bytesReceived.clear();
+
+    numNodes = getParentModule()->getParentModule()->par("numNodes");
+    totalIotNodes = par("totalIotNodes");
+    numNodes = numNodes - totalIotNodes; //so now numNOdes contains total sensor nodes only
+    trace () << "number of nodes is " << numNodes;
     if (self == 1 || self == 2 ||self == 4 )
         isSinkNieghbor= true;
     else
@@ -86,7 +97,7 @@ void NodeSensor::sendDropReplyTo(int source) {
     pkt->setExtraData(temp);
     pkt->setData(MESSAGETYPE_SNTOIOT_DROP_REPLY); //according to messageType defined in GenericPacket.msg comments.
     pkt->setSequenceNumber(controlPacketsSent);
-    pkt->setByteLength(packetSize);
+    //pkt->setByteLength(packetSize);
     trace()<<"sending MESSAGETYPE_SNTOIOT_DROP_REPLY to source = " << source;
     toNetworkLayer(pkt, getIntToConstChar(source));
     controlPacketsSent++;
@@ -96,6 +107,7 @@ void NodeSensor::fromNetworkLayer(ApplicationPacket * rcvPacket, const char *sou
 {
     //updateNeighborTable(atoi(source), rcvPacket->getSequenceNumber());
     std::string strSource(source);
+    int sourceId = atoi(source);
     if (!isSink) { //normal SN
         switch ((int)(rcvPacket->getData())) {
         case MESSAGETYPE_IOTTOSN_SEARCHREPLY: {// IotToSnSearchReply
@@ -167,6 +179,8 @@ void NodeSensor::fromNetworkLayer(ApplicationPacket * rcvPacket, const char *sou
                         trace() << "Packet reached at sink from SN=" << strSource << " originator is " << rcvpkt->getExtraData().OriginNodeID
                                 << " messageType = " << getMessageTypeText(rcvpkt->getData());
             dataPacketsReceived++;
+            packetsReceived[sourceId]++;
+            bytesReceived[sourceId] += rcvpkt->getByteLength();
             break;
         }
         trace() << "Packet reached at sink unknown type";
@@ -208,7 +222,7 @@ GenericPacket* NodeSensor::createGenericDataPacket(int originNodeId, int message
     pkt->setExtraData(temp);
     pkt->setData(messageType);
     pkt->setSequenceNumber(sequenceNO); //TODO: Check what should be sequence no.
-    pkt->setByteLength(packetSize); //TODO: check what should be data packet size
+    //pkt->setByteLength(packetSize); //TODO: check what should be data packet size
     return pkt;
 }
 
@@ -233,7 +247,7 @@ void NodeSensor::timerFiredCallback(int timerIndex)
                     pkt->setExtraData(temp);
                     pkt->setData(MESSAGETYPE_SNTOIOT_SEARCHIOT);
                     pkt->setSequenceNumber(controlPacketsSent);
-                    pkt->setByteLength(packetSize);
+                    //pkt->setByteLength(packetSize);
                     toNetworkLayer(pkt, BROADCAST_NETWORK_ADDRESS);
                     dataPacketRecord[i].searchIoTSent = true;
                     controlPacketsSent++;
@@ -253,6 +267,8 @@ void NodeSensor::timerFiredCallback(int timerIndex)
                     toNetworkLayer(createGenericDataPacket(self, MESSAGETYPE_SNTOIOT_DATAPACKET, dataPacketsSent), getIntToConstChar(proposalRecord[bestProposalId].id));
                     dataPacketsSent++;
                     dataPacketRecord[i].packetSent = true;
+                    int finaldestinationSinkid =  0;
+                    packetsSent[finaldestinationSinkid]++;
                 }
             }
         }  //end if (size > 0)
@@ -313,11 +329,42 @@ void NodeSensor::finishSpecific()
     declareOutput("Data Packets sent");
     trace()<< "Data packets sent " << dataPacketsSent; //message outputs at Castalia-trace
     collectOutput("Data Packets sent", self, "ID" , dataPacketsSent); //message at the output file with date.
-    //collectOutput()
-//    for (int i = 0; i < (int)neighborTable.size(); i++) {
-//        collectOutput("Packets received", neighborTable[i].id,
-//                  "Success", neighborTable[i].receivedPackets);
-//    }
+
+/**
+ * For calculation of Packets reception rate and loss rate as done by throughput app
+ */
+    declareOutput("Packets reception rate");
+    declareOutput("Packets loss rate");
+
+    cTopology *topo;    // temp variable to access packets received by other nodes
+    topo = new cTopology("topo");
+    topo->extractByNedTypeName(cStringTokenizer("node.Node").asVector());
+
+    long bytesDelivered = 0;
+    for (int i = 0; i < numNodes; i++) {
+        NodeSensor *appModule = dynamic_cast<NodeSensor*>
+        (topo->getNode(i)->getModule()->getSubmodule("Application"));
+        trace() << "value of i is " << i << " and self is " << self;
+        if (appModule) {
+            trace() << " appModule True" << "value of i is " << i << " and self is " << self;
+            int packetsSent = appModule->getPacketsSent(self);
+            if (packetsSent > 0) { // this node sent us some packets
+                trace() << " packetsSent > 0 ";
+                float rate = (float)packetsReceived[i]/packetsSent;
+                collectOutput("Packets reception rate", i, "total", rate);
+                collectOutput("Packets loss rate", i, "total", 1-rate);
+            }
+
+            bytesDelivered += appModule->getBytesReceived(self);
+        }
+    }
+    delete(topo);
+
+    if (packet_rate > 0 && bytesDelivered > 0) {
+        double energy = (resMgrModule->getSpentEnergy() * 1000000000)/(bytesDelivered * 8); //in nanojoules/bit
+        declareOutput("Energy nJ/bit");
+        collectOutput("Energy nJ/bit","",energy);
+    }
 }
 
 

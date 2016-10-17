@@ -6,4 +6,10 @@
 # to take histogram output of energy consumed by all nodes
 CastaliaResults -i 160919-103302.txt -s energy -n | CastaliaPlot -o energy-160919-103302.jpg -s histogram
 
+# to make energy plots for varyPayload:
+ Castalia -c varyConstantDataPayload -r 5
+CastaliaResults 161013-135647.txt -s consumed.energy | CastaliaPlot -o  energyConsumed-161013-135647.png -s histogram
+ CastaliaResults 161013-135647.txt -s consumed.energy -n | CastaliaPlot -o  energyConsumed-161013-135647-node.png -s linespoints
+
+
 
