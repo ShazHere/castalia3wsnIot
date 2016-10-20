@@ -9,13 +9,7 @@
 #define HELPERMETHODS_H_
 
 #include<math.h>
-//char const* getIntToConstChar(int number);
 
-inline char const* getIntToConstChar(int number) {
-    std::string s = std::to_string(number);
-    char const *pchar = s.c_str();  //use char const* as target type
-    return pchar;
-}
 inline double getDistance(double x1, double y1, double x2, double y2)
 {
     double x = x1 - x2;
@@ -43,6 +37,8 @@ int const MESSAGETYPE_SNTOIOT_DROP_REPLY = 4;
 int const MESSAGETYPE_SNTOIOT_DATAPACKET = 5;
 int const MESSAGETYPE_IOTTOSN_DATAPACKET = 6;
 int const MESSAGETYPE_SNTOSINK_DATAPACKET = 7;
+
+int const LQI_THRESHHOLD = 80;
 
 inline char const* getMessageTypeText(int messageType) {
     switch (messageType) {

@@ -50,15 +50,15 @@ void NodeSensor::startup()
     proposalRecord.clear();
     dataPacketRecord.clear();
 
-    packetsSent.clear();
-    packetsReceived.clear();
-    bytesReceived.clear();
+    packetsSent.clear(); //should be read as packets sent to SN[id]
+    packetsReceived.clear(); // packets received from SN[id]
+    bytesReceived.clear(); //bytes received from SN[id]
 
     numNodes = getParentModule()->getParentModule()->par("numNodes");
     totalIotNodes = par("totalIotNodes");
     numNodes = numNodes - totalIotNodes; //so now numNOdes contains total sensor nodes only
-    trace () << "number of nodes is " << numNodes;
-    if (self == 1 || self == 2 ||self == 4 )
+
+    if (self == 1  || self == 2 ||self == 4 )
         isSinkNieghbor= true;
     else
         isSinkNieghbor = false;
@@ -71,19 +71,24 @@ void NodeSensor::startup()
         }
     }
     setTimer(SEND_PACKET, startTxTime+self);
-    setTimer(CHECK_IOT_PROPOSALS, startTxTime+2+self);
-    //declareOutput("EnergyConsumed");
+    setTimer(CHECK_IOT_PROPOSALS, startTxTime+CHECK_IOT_PROPOSALS_INTERVAL+self);
+
+    declareOutput("Packets received per node"); //inspired by throughput
 
     /// int length = -1;
     /// assert(length >= 0 && "Length is not greater than equal to 0 "); sample assert to recall
 }
-
-bool NodeSensor::usefulProposal(IotToSnReplyPacket *rcvpkt) {
-    //trace()<<"Direction is " << rcvpkt->getExtraData().direction;
-    if (rcvpkt->getExtraData().direction == 1)
-        return true;
-    else
-        return false;
+/**
+ * Return ture/false based on direction of the IoT object
+ * TODO: //make it true untill I make some solution of finding the proper direction of the node mobility
+ */
+bool NodeSensor::usefulProposal(IotToSnReplyPacket *rcvpkt, string source) {
+    trace()<<"Direction of Iot "<< source << " is " << rcvpkt->getExtraData().direction;
+//    if (rcvpkt->getExtraData().direction == 1)
+//        return true;
+//    else
+//        return false;
+    return true;
 }
 
 void NodeSensor::sendDropReplyTo(int source) {
@@ -97,9 +102,9 @@ void NodeSensor::sendDropReplyTo(int source) {
     pkt->setExtraData(temp);
     pkt->setData(MESSAGETYPE_SNTOIOT_DROP_REPLY); //according to messageType defined in GenericPacket.msg comments.
     pkt->setSequenceNumber(controlPacketsSent);
-    //pkt->setByteLength(packetSize);
     trace()<<"sending MESSAGETYPE_SNTOIOT_DROP_REPLY to source = " << source;
-    toNetworkLayer(pkt, getIntToConstChar(source));
+    toNetworkLayer(pkt, (std::to_string(source)).c_str());
+
     controlPacketsSent++;
 }
 
@@ -107,7 +112,7 @@ void NodeSensor::fromNetworkLayer(ApplicationPacket * rcvPacket, const char *sou
 {
     //updateNeighborTable(atoi(source), rcvPacket->getSequenceNumber());
     std::string strSource(source);
-    int sourceId = atoi(source);
+
     if (!isSink) { //normal SN
         switch ((int)(rcvPacket->getData())) {
         case MESSAGETYPE_IOTTOSN_SEARCHREPLY: {// IotToSnSearchReply
@@ -117,7 +122,8 @@ void NodeSensor::fromNetworkLayer(ApplicationPacket * rcvPacket, const char *sou
                    << " rcvPacketName = " << rcvPacket->getName() << " message type is "
                                         << getMessageTypeText(rcvPacket->getData());
             assert ((atoi(source) == rcvpkt->getExtraData().nodeID) && "source is not equal to getExtraData.nodeID");
-            if (usefulProposal(rcvpkt)){
+            if (usefulProposal(rcvpkt, strSource)){
+                trace()<< "proposal is useful ";
                 addProposalRecord(rcvpkt, strSource);
             }
             break;
@@ -139,7 +145,8 @@ void NodeSensor::fromNetworkLayer(ApplicationPacket * rcvPacket, const char *sou
            GenericPacket *rcvpkt = check_and_cast<GenericPacket*>(rcvPacket);
            trace()<<"received dataPacket from IOT "<< strSource << " with LQI = " << lqi
                    << " messageType = " << getMessageTypeText(rcvpkt->getExtraData().messageType)
-                   << " seqNo = " << rcvPacket->getSequenceNumber();
+                   << " seqNo = " << rcvPacket->getSequenceNumber()
+                   << " origin id = "  << rcvpkt->getExtraData().OriginNodeID;
            assert((rcvpkt->getExtraData().messageType == rcvPacket->getData()) && "messageType mismatch");
            if (isSinkNieghbor) {//send data packet to sink directly
                GenericPacket *pkt = createGenericDataPacket(rcvpkt->getExtraData().OriginNodeID, MESSAGETYPE_SNTOSINK_DATAPACKET, dataPacketsSent);
@@ -154,7 +161,7 @@ void NodeSensor::fromNetworkLayer(ApplicationPacket * rcvPacket, const char *sou
            //else --its re-receiving its own data packet that it has sent earlier
            break;
        }//end case MESSAGETYPE_IOTTOSN_DATAPACKET
-       trace ()<< "packet received at sensor " << self << " but unknown type ";
+       trace ()<< "WARN: packet received at sensor " << self << " but unknown type ";
       } // end switch()
     } //end if (!sink)
     else //means this is the sink SN
@@ -179,8 +186,10 @@ void NodeSensor::fromNetworkLayer(ApplicationPacket * rcvPacket, const char *sou
                         trace() << "Packet reached at sink from SN=" << strSource << " originator is " << rcvpkt->getExtraData().OriginNodeID
                                 << " messageType = " << getMessageTypeText(rcvpkt->getData());
             dataPacketsReceived++;
-            packetsReceived[sourceId]++;
-            bytesReceived[sourceId] += rcvpkt->getByteLength();
+            int originatorId = rcvpkt->getExtraData().OriginNodeID;
+            collectOutput("Packets received per node", originatorId);
+            packetsReceived[originatorId]++;
+            bytesReceived[originatorId] += rcvpkt->getByteLength();
             break;
         }
         trace() << "Packet reached at sink unknown type";
@@ -198,19 +207,18 @@ bool NodeSensor::addProposalRecord(IotToSnReplyPacket *rcvpkt, string source) {
     return true;
 }
 void NodeSensor::updateIotProposalRecordTable(iotProposalRecord ipt) {
+    int size = (int)proposalRecord.size();
     int i = 0, pos = -1;
-        int tblSize = (int)proposalRecord.size();
+    for (i = 0; i < size; i++)
+        if (proposalRecord[i].id == ipt.id)
+            pos = i;
 
-        for (i = 0; i < tblSize; i++)
-            if (proposalRecord[i].id == ipt.id)
-                pos = i;
-
-        if (pos == -1) {
-            proposalRecord.push_back(ipt);
-        } else {
-           /// Decide what should be done for muliple proposals from same iot object
-            trace()<< "WARN: multiple proposals from same IoT!";
-        }
+    if (pos == -1) {
+        proposalRecord.push_back(ipt);
+    } else {
+        /// Decide what should be done for muliple proposals from same iot object
+        trace()<< "WARN: multiple proposals from same IoT!";
+    }
 }
 
 GenericPacket* NodeSensor::createGenericDataPacket(int originNodeId, int messageType, int sequenceNO) {
@@ -222,14 +230,14 @@ GenericPacket* NodeSensor::createGenericDataPacket(int originNodeId, int message
     pkt->setExtraData(temp);
     pkt->setData(messageType);
     pkt->setSequenceNumber(sequenceNO); //TODO: Check what should be sequence no.
-    //pkt->setByteLength(packetSize); //TODO: check what should be data packet size
     return pkt;
 }
 
-void NodeSensor::timerFiredCallback(int timerIndex)
+void NodeSensor::timerFiredCallback(int timerIndex = 0)
 {
     switch (timerIndex) {
     case SEND_PACKET: {
+        setTimer(SEND_PACKET, SEND_PACKET_INTERVAL);
         int size = (int) (dataPacketRecord.size());
         int previousValueControlPacketsSent = controlPacketsSent;
         if (size > 0) {
@@ -247,34 +255,40 @@ void NodeSensor::timerFiredCallback(int timerIndex)
                     pkt->setExtraData(temp);
                     pkt->setData(MESSAGETYPE_SNTOIOT_SEARCHIOT);
                     pkt->setSequenceNumber(controlPacketsSent);
-                    //pkt->setByteLength(packetSize);
                     toNetworkLayer(pkt, BROADCAST_NETWORK_ADDRESS);
                     dataPacketRecord[i].searchIoTSent = true;
                     controlPacketsSent++;
                 }
             }
            }// end if (size > 0)
-        setTimer(SEND_PACKET, 10); //so that timer is called after every 10 (seconds or ms)
+
         break;
-    }
+    }  //End of case SEND_PACKET
     case CHECK_IOT_PROPOSALS: {
+        setTimer(CHECK_IOT_PROPOSALS, CHECK_IOT_PROPOSALS_INTERVAL);
         int size = (int) (dataPacketRecord.size());
         if (size > 0) {
             int bestProposalId = getBestProposal();
+            if ( -1 == bestProposalId) {
+                trace() << "bestproposal not found " ;
+                break; // this means new search IoT messages should be sent
+            }
             trace() << "best proposal id is IOT " << proposalRecord[bestProposalId].id;
             for (int i = 0; i<size; i++) {
                 if (dataPacketRecord[i].packetSent == false) {
-                    toNetworkLayer(createGenericDataPacket(self, MESSAGETYPE_SNTOIOT_DATAPACKET, dataPacketsSent), getIntToConstChar(proposalRecord[bestProposalId].id));
+                    toNetworkLayer(createGenericDataPacket(dataPacketRecord[i].originatorId, MESSAGETYPE_SNTOIOT_DATAPACKET, dataPacketsSent),
+                                    (std::to_string(proposalRecord[bestProposalId].id)).c_str());
                     dataPacketsSent++;
                     dataPacketRecord[i].packetSent = true;
                     int finaldestinationSinkid =  0;
                     packetsSent[finaldestinationSinkid]++;
                 }
             }
+            clearRecords();
         }  //end if (size > 0)
         break;
     }// end case CHECK_IOT_PROPOSALS
-    case CHECK_TOSEND_IOTDROPREPLY: {
+    case CHECK_TOSEND_IOTDROPREPLY: {//timer value set only while adding in sourcesForDropReply
         //send the IOTDROP reply
         int size = (int) (sourcesForDropReply.size());
         if (size != 0) {
@@ -289,21 +303,25 @@ void NodeSensor::timerFiredCallback(int timerIndex)
 }
 int NodeSensor::getBestProposal() {
     int size = (int) (proposalRecord.size());
+    trace ()<< "getting best proposal";
     if (size != 0) {
         //select IoT and respond with data object
-        double bestRangeIoTId = 0; //at the momend decide based on range
+        double bestRangeIoTId = 0; //at the moment decide based on speed.
+        //In .ini file the speed of closer to Sink IoT's is higher than others.
         for (int i = 0; i < size; i++) {
-            if (proposalRecord[i].range > proposalRecord[bestRangeIoTId].range)
+            //trace() << "speed of Iot " << proposalRecord[i].id << " is " << proposalRecord[i].speed ;
+            if (proposalRecord[i].speed > proposalRecord[bestRangeIoTId].speed)
                 bestRangeIoTId = i;
         }
-        removeProposals();
+        trace()<< "best proposal is " << proposalRecord[bestRangeIoTId].id;
         return bestRangeIoTId;
     }
     else
         return -1;
 }
-void NodeSensor::removeProposals() {
+void NodeSensor::clearRecords() {
     proposalRecord.clear();
+    dataPacketRecord.clear();
     /***
      * AT the moment there is strong assumption that at one time, SN needs to ask proposal
      * for only one data, and will select an IoT for sending that data. Therefore propsals
@@ -344,22 +362,24 @@ void NodeSensor::finishSpecific()
     for (int i = 0; i < numNodes; i++) {
         NodeSensor *appModule = dynamic_cast<NodeSensor*>
         (topo->getNode(i)->getModule()->getSubmodule("Application"));
-        trace() << "value of i is " << i << " and self is " << self;
+      //  trace() << "value of i is " << i << " and self is " << self;
         if (appModule) {
-            trace() << " appModule True" << "value of i is " << i << " and self is " << self;
+    //        trace() << " appModule True" << "value of i is " << i << " and self is " << self;
             int packetsSent = appModule->getPacketsSent(self);
             if (packetsSent > 0) { // this node sent us some packets
-                trace() << " packetsSent > 0 ";
+        //        trace() << " packetsSent > 0 ";
                 float rate = (float)packetsReceived[i]/packetsSent;
                 collectOutput("Packets reception rate", i, "total", rate);
                 collectOutput("Packets loss rate", i, "total", 1-rate);
             }
 
-            bytesDelivered += appModule->getBytesReceived(self);
+            bytesDelivered += appModule->getBytesReceived(self); //actually this is bytesDelivered to sink by sender
+            //but we get by asking sender that how many bytes are received by sink from you!
+
         }
     }
     delete(topo);
-
+    //trace ()<< "packetRAte = " << packet_rate << " bytesdelivered = " << bytesDelivered;
     if (packet_rate > 0 && bytesDelivered > 0) {
         double energy = (resMgrModule->getSpentEnergy() * 1000000000)/(bytesDelivered * 8); //in nanojoules/bit
         declareOutput("Energy nJ/bit");

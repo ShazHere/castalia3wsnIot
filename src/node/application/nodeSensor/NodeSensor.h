@@ -53,6 +53,8 @@ private:
    vector<generatedDataPacketRecord> dataPacketRecord;
    vector<int> sourcesForDropReply;
 
+   const int CHECK_IOT_PROPOSALS_INTERVAL = 2;
+   const int SEND_PACKET_INTERVAL = 2;
    //variables below are used to determine the packet delivery rates.
        int numNodes;
        map<long,int> packetsReceived;
@@ -60,11 +62,11 @@ private:
        map<long,int> packetsSent;
 
    //user defined functions
-   bool usefulProposal(IotToSnReplyPacket *rcvpkt);
+   bool usefulProposal(IotToSnReplyPacket *rcvpkt, string source);
    bool addProposalRecord(IotToSnReplyPacket *rcvpkt, string source);
    void updateIotProposalRecordTable(iotProposalRecord );
    int getBestProposal();
-   void removeProposals();
+   void clearRecords();
    void generateDataPacket(int originatorId);
    GenericPacket* createGenericDataPacket(int originNodeId, int messageType, int sequenceNo);
    string getLocationText();
