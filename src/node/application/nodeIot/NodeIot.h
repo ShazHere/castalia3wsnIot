@@ -76,6 +76,7 @@ private:
     void updateDropReplySnPacketRecord(iotDropReplySnRecord);
     int getBestSn(iotDropReplySnRecord* &bestSn);
     bool directionCheckOk ();
+    bool isMovingTowardsSink();
     string getLocationText();
 
  protected:

@@ -25,10 +25,16 @@ simple ThroughputTest like node.application.iApplication {
 	double delayLimit = default (0); 			// application delay limit (0 - no limit)
 											// discard packets arriving after the limit
 
-	string nextRecipient = default ("0");	// Destination for packets received in this node. 
+	string nextRecipient = default ("SINK");	// Destination for packets received in this node. 
 											// These parameters can be used to create an
 											// application-level static routing. This way we can
 											// have a multi-hop throughput test   
+	bool isSink = default (false); //for multiRingsrouting (not successfull)
+
+//      bool broadcastReports = default(false);
+	string reportDestination = default ("0");	//this can also be set to "-1" for broadcast
+												// or to a specific node's address (e.g "0")
+												////for multiRingsrouting use TMAC protocol at MAC layer
 
 	double packet_rate = default (0);	// packets per second, by default we transmit no packets
 	double startupDelay = default (0);	// delay in seconds before the app stars producing packets

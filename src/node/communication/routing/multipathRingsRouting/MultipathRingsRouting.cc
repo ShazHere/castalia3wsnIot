@@ -32,7 +32,6 @@ void MultipathRingsRouting::startup()
 	isConnected = (isSink) ? true : false;
 	isScheduledNetSetupTimeout = false;
 	currentSequenceNumber = 0;
-
 	if (isSink)
 		sendTopologySetupPacket();
 }
@@ -66,13 +65,14 @@ void MultipathRingsRouting::timerFiredCallback(int index)
 
 	isScheduledNetSetupTimeout = false;
 	if (tmpLevel == NO_LEVEL) {
+	    trace()<< "still tmpLevel = NO_LEVEL";
 		setTimer(TOPOLOGY_SETUP_TIMEOUT, netSetupTimeout);
 		isScheduledNetSetupTimeout = true;
 	} else if (currentLevel == NO_LEVEL) {
 		//Broadcast to all nodes of currentLevel-1
 		currentLevel = tmpLevel + 1;
 		currentSinkID = tmpSinkID;
-
+		trace()<< "trying to broadcast";
 		if (!isConnected) {
 			isConnected = true;
 			sendControlMessage(MPRINGS_CONNECTED_TO_TREE);
@@ -80,9 +80,11 @@ void MultipathRingsRouting::timerFiredCallback(int index)
 			if (!TXBuffer.empty())
 				processBufferedPacket();
 		} else {
+		    trace()<< "trying to send reconnection message";
 			sendControlMessage(MPRINGS_TREE_LEVEL_UPDATED);
 			trace() << "Reconnected to " << currentSinkID << " at level " << currentLevel;
 		}
+		trace()<<"sending topology setupPacket";
 		sendTopologySetupPacket();
 	}
 
@@ -139,6 +141,7 @@ void MultipathRingsRouting::fromMacLayer(cPacket * pkt, int macAddress, double r
 			if (isSink)
 				break;
 			if (!isScheduledNetSetupTimeout) {
+			    trace()<< "setting TOPOLOGY_SETUP_TIMEOUT";
 				isScheduledNetSetupTimeout = true;
 				setTimer(TOPOLOGY_SETUP_TIMEOUT, netSetupTimeout);
 				tmpLevel = NO_LEVEL;
@@ -148,6 +151,7 @@ void MultipathRingsRouting::fromMacLayer(cPacket * pkt, int macAddress, double r
 				tmpLevel = netPacket->getSenderLevel();
 				tmpSinkID = netPacket->getSinkID();
 			}
+			//trace()<< "tmpLevel = " << tmpLevel << " and tmpSinkID = " << tmpSinkID;
 			break;
 		}
 
@@ -156,14 +160,16 @@ void MultipathRingsRouting::fromMacLayer(cPacket * pkt, int macAddress, double r
 			string src(netPacket->getSource());
 			int senderLevel = netPacket->getSenderLevel();
 			int sinkID = netPacket->getSinkID();
-
+			trace()<<" received MPRINGS_DATA_PACKET";
 			if (dst.compare(BROADCAST_NETWORK_ADDRESS) == 0 ||
 					dst.compare(SELF_NETWORK_ADDRESS) == 0) {
+			    trace()<<"first if true";
 				// We are not filtering packets that are sent to this node directly or to 
 				// broadcast network address, making application layer responsible for them
 				toApplicationLayer(pkt->decapsulate());
 
 			} else if (dst.compare(SINK_NETWORK_ADDRESS) == 0) {
+			    trace()<<"received packet with dst.compare(SINK_NETWORK_ADDRESS) == 0";
 				if (senderLevel == currentLevel + 1) {
 					if (self == sinkID) {
 						// Packet is for this node, if filter passes, forward it to application
@@ -182,6 +188,7 @@ void MultipathRingsRouting::fromMacLayer(cPacket * pkt, int macAddress, double r
 				}
 
 			} else if (dst.compare(PARENT_NETWORK_ADDRESS) == 0) {
+			    trace()<<"received packet with dst.compare(PARENT_NETWORK_ADDRESS) == 0";
 				if (senderLevel == currentLevel + 1 && sinkID == currentSinkID) {
 					// Packet is for this node, if filter passes, forward it to application
 					if (isNotDuplicatePacket(pkt))
@@ -190,6 +197,8 @@ void MultipathRingsRouting::fromMacLayer(cPacket * pkt, int macAddress, double r
 						trace() << "Discarding duplicate packet from node " << src;
 				}
 			}
+			else //for debugging purpose
+			    trace()<<"WARN: NO if true dst is " << dst << " sink network address is " << SINK_NETWORK_ADDRESS;
 			break;
 		}
 	}

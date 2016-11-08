@@ -29,11 +29,12 @@ void ThroughputTest::startup()
 	packetsSent.clear();
 	packetsReceived.clear();
 	bytesReceived.clear();
-	if (9 == self)
-	    //if (packet_spacing > 0 && recipientAddress.compare(SELF_NETWORK_ADDRESS) != 0)
+	//if (9 == self)
+	if (packet_spacing > 0 && (recipientAddress.compare(SELF_NETWORK_ADDRESS) != 0
+	        || (recipientAddress.compare(SINK_NETWORK_ADDRESS) == 0 && isSink)))
 	    setTimer(SEND_PACKET, packet_spacing + startupDelay);
-	else
-	    trace() << "Not sending packets";
+	//else
+	  //  trace() << "Not sending packets";
 
 	declareOutput("Packets received per node");
 }
@@ -44,8 +45,10 @@ void ThroughputTest::fromNetworkLayer(ApplicationPacket * rcvPacket,
 	int sequenceNumber = rcvPacket->getSequenceNumber();
 	int sourceId = atoi(source);
 
+	trace()<< "recipint address is " << recipientAddress << " SELF_NETWORK_ADDRESS= "<< SELF_NETWORK_ADDRESS;
 	// This node is the final recipient for the packet
-	if (recipientAddress.compare(SELF_NETWORK_ADDRESS) == 0) {
+	if (recipientAddress.compare(SELF_NETWORK_ADDRESS) == 0
+	        || (recipientAddress.compare(SINK_NETWORK_ADDRESS) == 0 && isSink)) {
 		if (delayLimit == 0 || (simTime() - rcvPacket->getCreationTime()) <= delayLimit) { 
 			trace() << "Received packet #" << sequenceNumber << " from node " << source;
 			collectOutput("Packets received per node", sourceId);
@@ -57,6 +60,7 @@ void ThroughputTest::fromNetworkLayer(ApplicationPacket * rcvPacket,
 		}
 	// Packet has to be forwarded to the next hop recipient
 	} else {
+	    trace()<<"forwarding received packet";
 		ApplicationPacket* fwdPacket = rcvPacket->dup();
 		// Reset the size of the packet, otherwise the app overhead will keep adding on
 		fwdPacket->setByteLength(0);
@@ -88,7 +92,7 @@ void ThroughputTest::handleRadioControlMessage(RadioControlMessage *radioMsg)
 {
 	switch (radioMsg->getRadioControlMessageKind()) {
 		case CARRIER_SENSE_INTERRUPT:
-			trace() << "CS Interrupt received! current RSSI value is: " << radioModule->readRSSI();
+			//trace() << "CS Interrupt received! current RSSI value is: " << radioModule->readRSSI();
                         break;
 	}
 }
@@ -110,7 +114,7 @@ void ThroughputTest::finishSpecific() {
 			//trace() << " appModule True" << "value of i is " << i << " and self is " << self;
 			int packetsSent = appModule->getPacketsSent(self);
 			if (packetsSent > 0) { // this node sent us some packets
-				trace() << " packetsSent > 0 ";
+				trace() << " packetsSent = " << packetsSent;
 				float rate = (float)packetsReceived[i]/packetsSent;
 				collectOutput("Packets reception rate", i, "total", rate);
 				collectOutput("Packets loss rate", i, "total", 1-rate);

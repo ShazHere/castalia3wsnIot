@@ -22,9 +22,7 @@ sim-time-limit = 70s
 SN.field_x = 6                                        # meters
 SN.field_y = 6                                        # meters
 SN.numNodes = 10
-SN.deployment = "[1..9]->3x3"#"uniform" #if not set, all nodes are at location (0,0)
-SN.node[0].xCoor = 1  #Sink location should be consistent with  NodeIot.startup() sink location
-SN.node[0].yCoor = 0
+SN.deployment = "uniform" #if not set, all nodes are at location (0,0)
 
 SN.node[1..9].ResourceManager.initialEnergy = 100
 SN.node[*].Communication.Radio.RadioParametersFile = "../Parameters/Radio/CC2420.txt"

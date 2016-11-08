@@ -70,7 +70,7 @@ void NodeIot::fromNetworkLayer(ApplicationPacket * rcvPacket, const char *source
             SnToIotPacket *rcvpkt = check_and_cast<SnToIotPacket*>(rcvPacket);
             trace()<<"received packet from "<< strSource << " with LQI = " << lqi
                     << " spEnergy = " << rcvpkt->getExtraData().spentEnergy
-                    << " message type is "<< getMessageTypeText(rcvPacket->getData());
+                    << " message type= "<< getMessageTypeText(rcvPacket->getData());
             IotToSnReplyPacket *pkt = new IotToSnReplyPacket("IoTReplyPacket", APPLICATION_PACKET);
             iotInfo temp;
             temp.locX = mobilityModule->getLocation().x;
@@ -90,18 +90,18 @@ void NodeIot::fromNetworkLayer(ApplicationPacket * rcvPacket, const char *source
         case MESSAGETYPE_SNTOIOT_DROP_REPLY: { //SN to IoT  drop reply
             controlPacketsReceived ++;
             SnToIotPacket *rcvpkt = check_and_cast<SnToIotPacket*>(rcvPacket);
-            trace()<<"Received drop reply packet from "<< strSource << " with LQI = " << lqi
-                    << " spEnergy = " << rcvpkt->getExtraData().spentEnergy
-                    << " message type is " << getMessageTypeText(rcvPacket->getData());
+            trace()<<"Received from "<< strSource << ", LQI= " << lqi
+                   // << " spEnergy = " << rcvpkt->getExtraData().spentEnergy
+                    << " message type= " << getMessageTypeText(rcvPacket->getData());
             addDropReplySnPacketRecord(rcvpkt, source, lqi);
             break;
         }
         case MESSAGETYPE_SNTOIOT_DATAPACKET: {//data packet
             dataPacketsReceived++;
             GenericPacket *rcvpkt = check_and_cast<GenericPacket*>(rcvPacket);
-            trace()<<"received packet from "<< strSource << " with LQI = " << lqi
-                    << " messageType = " << rcvpkt->getExtraData().messageType
-                    << " message type in data is " << getMessageTypeText(rcvPacket->getData());
+            trace()<<"received packet from "<< strSource << ", LQI= " << lqi
+                    //<< " messageType = " << rcvpkt->getExtraData().messageType
+                    << ", message type= " << getMessageTypeText(rcvPacket->getData());
             addDataPacketRecord(rcvpkt, source);
             //send this data to sink node? or dropPacket messages?
             break;
@@ -236,19 +236,27 @@ int NodeIot::getBestSn(iotDropReplySnRecord* &bestSn) {
     if (tblSize == 0)
         return -1; //return with error code
 
-    double closestSnDist = getDistance(sinkX, sinkY, dropReplySnRecord[0].locX, dropReplySnRecord[0].locY);
-    int closestSnId = 0;
+    double closestSnDist;
+    int closestSnId;
     double idist;
     double ilqi;
+    for (int i = 0; i< tblSize; i++) { //First be sure that LQI is enough indicating signals are strong enough.
+        if (dropReplySnRecord[i].lqi >= LQI_THRESHHOLD) {
+            closestSnDist  = getDistance(sinkX, sinkY, dropReplySnRecord[i].locX, dropReplySnRecord[i].locY);
+            closestSnId = i;
+        }
+    }
     for (int i = 0; i < tblSize; i++) { //decide based on distance
         idist = getDistance(sinkX, sinkY, dropReplySnRecord[i].locX, dropReplySnRecord[i].locY);
         ilqi = dropReplySnRecord[i].lqi;
 //        trace()<< "sink = (" << sinkX <<", " << sinkY << ") and SN "<< dropReplySnRecord[i].SnId << " is at ("
 //                << dropReplySnRecord[i].locX << ", " << dropReplySnRecord[i].locY << ")";
-trace()<< "Sink distance from id " << dropReplySnRecord[i].SnId << "is " << idist << " and lqi = " << ilqi;
-        if (idist<closestSnDist && ilqi >= LQI_THRESHHOLD) {
-            closestSnDist = idist;
-            closestSnId = i;
+        trace()<< "Sink distance from id " << dropReplySnRecord[i].SnId << "is " << idist << " and lqi = " << ilqi;
+        if (ilqi >= LQI_THRESHHOLD) {
+            if (idist<closestSnDist) {
+                closestSnDist = idist;
+                closestSnId = i;
+            }
         }
     }
     bestSn = &(dropReplySnRecord[closestSnId]);
@@ -289,6 +297,14 @@ bool NodeIot::directionCheckOk ()
         else
             return true;
     }
+}
+bool NodeIot::isMovingTowardsSink() {
+    bool direction = (check_and_cast<LineMobilityManager*>(mobilityModule))->getDirection();
+        if (1 == direction ) {//0 means going away from sink
+                return true;
+            }
+        else
+            return false; //means going away from sink
 }
 void NodeIot::finishSpecific()
 {

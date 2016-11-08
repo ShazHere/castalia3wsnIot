@@ -64,7 +64,7 @@ class VirtualApplication: public CastaliaModule, public TimerService {
 	virtual void handleSensorReading(SensorReadingMessage *) {}
 	virtual void handleNetworkControlMessage(cMessage *) {}
 	virtual void handleMacControlMessage(cMessage *) {}
-	virtual void handleRadioControlMessage(RadioControlMessage *) {}
+	virtual void handleRadioControlMessage(RadioControlMessage *) {	}
 };
 
 #endif

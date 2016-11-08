@@ -25,11 +25,7 @@ inline double getDistance(double x1, double y1, double x2, double y2)
 // PROBLEM: i'm unable to use new user defined type in the packet infor, so i used the default 'data'
 //  and explicitly maintain the folowing values.
 // data field in ApplicationPacket
-//    SnToIotSearchIot = 1,
-//    IotToSnSearchReply = 2,
-//    IotToSnSearchSnForDrop = 3,
-//    SnToIotDataPacket = 4,
-//    IotToSnDataPacket = 5
+
 int const MESSAGETYPE_SNTOIOT_SEARCHIOT = 1;
 int const MESSAGETYPE_IOTTOSN_SEARCHREPLY = 2;
 int const MESSAGETYPE_IOTTOSN_DROPTOSEARCHSN = 3;

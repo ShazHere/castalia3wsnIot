@@ -31,11 +31,11 @@ simple NodeSensor like node.application.iApplication {
 											// These parameters can be used to create an
 											// application-level static routing. This way we can
 											// have a multi-hop throughput test   
-
+	int generateDataInterval = default (50);//in seconds
 //inspired by throughtput app
 	double packet_rate = default (0);	// packets per second, by default we transmit no packets
 	double startupDelay = default (0);	// delay in seconds before the app stars producing packets
-    bool isSink = default (false);//to check if it should work
+    bool isSink = default (false);//to check if it should work in NodeSensor
 	
 	double latencyHistogramMax = default (200);
 	int latencyHistogramBuckets = default (10);

@@ -36,6 +36,7 @@ enum NodeSensorTimers {
     SEND_PACKET = 1,
     CHECK_IOT_PROPOSALS = 2,
     CHECK_TOSEND_IOTDROPREPLY = 3,
+    GENERATE_DATA,
 };
 
 class NodeSensor:  public VirtualApplication {
@@ -55,6 +56,7 @@ private:
 
    const int CHECK_IOT_PROPOSALS_INTERVAL = 2;
    const int SEND_PACKET_INTERVAL = 2;
+    int GENERATE_DATA_INTERVAL; //fixed in omnet.ini
    //variables below are used to determine the packet delivery rates.
        int numNodes;
        map<long,int> packetsReceived;

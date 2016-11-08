@@ -57,6 +57,7 @@ void NodeSensor::startup()
     numNodes = getParentModule()->getParentModule()->par("numNodes");
     totalIotNodes = par("totalIotNodes");
     numNodes = numNodes - totalIotNodes; //so now numNOdes contains total sensor nodes only
+    GENERATE_DATA_INTERVAL = par("generateDataInterval");
 
     if (self == 1  || self == 2 ||self == 4 )
         isSinkNieghbor= true;
@@ -69,9 +70,11 @@ void NodeSensor::startup()
         for (int i = 0; i< 5; i++){
             generateDataPacket(self);
         }
+        setTimer(GENERATE_DATA, GENERATE_DATA_INTERVAL);
+        setTimer(SEND_PACKET, startTxTime+(self/numNodes));
     }
-    setTimer(SEND_PACKET, startTxTime+self);
-    setTimer(CHECK_IOT_PROPOSALS, startTxTime+CHECK_IOT_PROPOSALS_INTERVAL+self);
+    setTimer(SEND_PACKET, startTxTime+(self/numNodes));
+    setTimer(CHECK_IOT_PROPOSALS, startTxTime+(self/numNodes));
 
     declareOutput("Packets received per node"); //inspired by throughput
 
@@ -84,10 +87,10 @@ void NodeSensor::startup()
  */
 bool NodeSensor::usefulProposal(IotToSnReplyPacket *rcvpkt, string source) {
     trace()<<"Direction of Iot "<< source << " is " << rcvpkt->getExtraData().direction;
-//    if (rcvpkt->getExtraData().direction == 1)
-//        return true;
-//    else
-//        return false;
+    if (rcvpkt->getExtraData().direction == 1)
+        return true;
+    else
+        return false;
     return true;
 }
 
@@ -136,17 +139,17 @@ void NodeSensor::fromNetworkLayer(ApplicationPacket * rcvPacket, const char *sou
                    << " rcvPacketName = " << rcvPacket->getName() ;
            assert((rcvpkt->getExtraData().messageType == rcvPacket->getData()) && "messageType mismatch");
            sourcesForDropReply.push_back(atoi(source)); //don't immeditaly send reply since it causes interference
-           double randomTime = uniform(0.1,1);  //choose a random no between 0.1s and 1s
+           double randomTime = uniform(0.1,0.5);  //choose a random no between 0.1s and 0.5s
            setTimer(CHECK_TOSEND_IOTDROPREPLY, randomTime);
            break;
        }
        case MESSAGETYPE_IOTTOSN_DATAPACKET: {// IotToSnDataPacket
            dataPacketsReceived++;
            GenericPacket *rcvpkt = check_and_cast<GenericPacket*>(rcvPacket);
-           trace()<<"received dataPacket from IOT "<< strSource << " with LQI = " << lqi
-                   << " messageType = " << getMessageTypeText(rcvpkt->getExtraData().messageType)
+           trace()<<"received dataPacket from IOT "<< strSource << ", LQI=" << lqi
+                   //<< " messageType = " << getMessageTypeText(rcvpkt->getExtraData().messageType)
                    << " seqNo = " << rcvPacket->getSequenceNumber()
-                   << " origin id = "  << rcvpkt->getExtraData().OriginNodeID;
+                   << " originID = "  << rcvpkt->getExtraData().OriginNodeID;
            assert((rcvpkt->getExtraData().messageType == rcvPacket->getData()) && "messageType mismatch");
            if (isSinkNieghbor) {//send data packet to sink directly
                GenericPacket *pkt = createGenericDataPacket(rcvpkt->getExtraData().OriginNodeID, MESSAGETYPE_SNTOSINK_DATAPACKET, dataPacketsSent);
@@ -298,12 +301,19 @@ void NodeSensor::timerFiredCallback(int timerIndex = 0)
         sourcesForDropReply.clear();
         break;
     } //end case CHECK_TOSEND_IOTDROPREPLY
+    case GENERATE_DATA: {
+        setTimer(GENERATE_DATA, GENERATE_DATA_INTERVAL);
+        //Generate Data packets
+        for (int i = 0; i< 5; i++){
+            generateDataPacket(self);
+        }
+        break;
+    }
 
     }// end switch(timerIndex)
 }
 int NodeSensor::getBestProposal() {
     int size = (int) (proposalRecord.size());
-    trace ()<< "getting best proposal";
     if (size != 0) {
         //select IoT and respond with data object
         double bestRangeIoTId = 0; //at the moment decide based on speed.
