@@ -25,7 +25,7 @@ simple ThroughputTest like node.application.iApplication {
 	double delayLimit = default (0); 			// application delay limit (0 - no limit)
 											// discard packets arriving after the limit
 
-	string nextRecipient = default ("SINK");	// Destination for packets received in this node. 
+	string nextRecipient = default ("0");	// Destination for packets received in this node. 
 											// These parameters can be used to create an
 											// application-level static routing. This way we can
 											// have a multi-hop throughput test   

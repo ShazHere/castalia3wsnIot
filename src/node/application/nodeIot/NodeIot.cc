@@ -35,10 +35,8 @@ string NodeIot::getLocationText() {
 
 void NodeIot::startup()
 {
-    //From connectivityApp
     trace() << "Alhumdulillah; This is startup() of NodeIot "
             << getLocationText();
-    //trace() << "constantDataPayLoad is"  << constantDataPayload;
     //fix sink location, make consistent with omnetpp.ini of project
     sinkX = 1;
     sinkY = 0;

@@ -13,7 +13,7 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package castalia3.src.node.communication.routing.multipathRingsRoutingIot;
+package node.communication.routing.multipathRingsRoutingIot;
 //********************************************************************************
 //*  Copyright: University                *
 //*  Author(s): Shaza Hanif  *
@@ -29,6 +29,8 @@ simple MultipathRingsRoutingIot like node.communication.routing.iRouting {
 	int netDataFrameOverhead = default (14);			// bytes
 	int mpathRingsSetupFrameOverhead = default (13);	// bytes
 	int netSetupTimeout = default (50);					// msec
+	
+	bool isMobile = default (false); 					// For mobile IoT objects
 
  gates:
 	output toCommunicationModule;

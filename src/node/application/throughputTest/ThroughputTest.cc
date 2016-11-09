@@ -14,8 +14,18 @@
 
 Define_Module(ThroughputTest);
 
+string ThroughputTest::getLocationText() {
+    std::string str;
+    str =  " Location = (" + std::to_string((int)(floor(mobilityModule->getLocation().x))) + ", "
+           + std::to_string((int)(floor(mobilityModule->getLocation().y))) + ")";
+    return str;
+}
+
 void ThroughputTest::startup()
 {
+    trace() << "Alhumdulillah; Starting up Node " << self << " at "
+            << getLocationText();
+
 	packet_rate = par("packet_rate");
 	recipientAddress = par("nextRecipient").stringValue();
 	recipientId = atoi(recipientAddress.c_str());
@@ -31,7 +41,7 @@ void ThroughputTest::startup()
 	bytesReceived.clear();
 	//if (9 == self)
 	if (packet_spacing > 0 && (recipientAddress.compare(SELF_NETWORK_ADDRESS) != 0
-	        || (recipientAddress.compare(SINK_NETWORK_ADDRESS) == 0 && isSink)))
+	        || ( isSink)))
 	    setTimer(SEND_PACKET, packet_spacing + startupDelay);
 	//else
 	  //  trace() << "Not sending packets";
@@ -44,11 +54,9 @@ void ThroughputTest::fromNetworkLayer(ApplicationPacket * rcvPacket,
 {
 	int sequenceNumber = rcvPacket->getSequenceNumber();
 	int sourceId = atoi(source);
-
-	trace()<< "recipint address is " << recipientAddress << " SELF_NETWORK_ADDRESS= "<< SELF_NETWORK_ADDRESS;
 	// This node is the final recipient for the packet
 	if (recipientAddress.compare(SELF_NETWORK_ADDRESS) == 0
-	        || (recipientAddress.compare(SINK_NETWORK_ADDRESS) == 0 && isSink)) {
+	        || ( isSink)) {
 		if (delayLimit == 0 || (simTime() - rcvPacket->getCreationTime()) <= delayLimit) { 
 			trace() << "Received packet #" << sequenceNumber << " from node " << source;
 			collectOutput("Packets received per node", sourceId);
@@ -74,13 +82,13 @@ void ThroughputTest::timerFiredCallback(int index)
 		case SEND_PACKET:{
 		    int totalPackets = 5;
 		    trace() << "Sending packet #" << dataSN;
-		    trace ()<< "sending " << totalPackets;
-		    for (int i = 0 ; i < totalPackets; i++) {
+//		    trace ()<< "sending " << totalPackets;
+//		    for (int i = 0 ; i < totalPackets; i++) {
 		        toNetworkLayer(createGenericDataPacket(0, dataSN), recipientAddress.c_str());
 		        packetsSent[recipientId]++;
 		        dataSN++;
-		    }
-		    //setTimer(SEND_PACKET, packet_spacing);
+//		    }
+		    setTimer(SEND_PACKET, packet_spacing);
 			break;
 		}
 	}
@@ -114,7 +122,6 @@ void ThroughputTest::finishSpecific() {
 			//trace() << " appModule True" << "value of i is " << i << " and self is " << self;
 			int packetsSent = appModule->getPacketsSent(self);
 			if (packetsSent > 0) { // this node sent us some packets
-				trace() << " packetsSent = " << packetsSent;
 				float rate = (float)packetsReceived[i]/packetsSent;
 				collectOutput("Packets reception rate", i, "total", rate);
 				collectOutput("Packets loss rate", i, "total", 1-rate);
@@ -126,7 +133,6 @@ void ThroughputTest::finishSpecific() {
 	delete(topo);
 	trace() << "bytes delivered are: " << bytesDelivered;
 	if (packet_rate > 0 && bytesDelivered > 0) {
-	    trace()<< "packet_rate condition true";
 		double energy = (resMgrModule->getSpentEnergy() * 1000000000)/(bytesDelivered * 8);	//in nanojoules/bit
 		declareOutput("Energy nJ/bit");
 		collectOutput("Energy nJ/bit","",energy);

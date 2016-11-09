@@ -38,6 +38,8 @@ class ThroughputTest: public VirtualApplication {
 	map<long,int> bytesReceived;
 	map<long,int> packetsSent;
 
+	string getLocationText();
+
  protected:
 	void startup();
 	void fromNetworkLayer(ApplicationPacket *, const char *, double, double);
