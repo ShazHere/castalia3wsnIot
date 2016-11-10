@@ -30,7 +30,7 @@ simple MultipathRingsRoutingIot like node.communication.routing.iRouting {
 	int mpathRingsSetupFrameOverhead = default (13);	// bytes
 	int netSetupTimeout = default (50);					// msec
 	
-	bool isMobile = default (false); 					// For mobile IoT objects
+	//bool isMobile = default (false); 					// For mobile IoT objects
 
  gates:
 	output toCommunicationModule;

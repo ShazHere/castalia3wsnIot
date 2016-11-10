@@ -122,6 +122,7 @@ void ThroughputTest::finishSpecific() {
 			//trace() << " appModule True" << "value of i is " << i << " and self is " << self;
 			int packetsSent = appModule->getPacketsSent(self);
 			if (packetsSent > 0) { // this node sent us some packets
+			    trace()<< "packets sent by " << i << " is  = " << packetsSent;
 				float rate = (float)packetsReceived[i]/packetsSent;
 				collectOutput("Packets reception rate", i, "total", rate);
 				collectOutput("Packets loss rate", i, "total", 1-rate);

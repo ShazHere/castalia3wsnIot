@@ -16,7 +16,7 @@ Define_Module(MultipathRingsRoutingIot);
 
 void MultipathRingsRoutingIot::startup()
 {
-    isMobile = par("isMobile");
+    //isMobile = par("isMobile");
 	netSetupTimeout = (double)par("netSetupTimeout") / 1000.0;
 	mpathRingsSetupFrameOverhead = par("mpathRingsSetupFrameOverhead");
 
@@ -35,7 +35,7 @@ void MultipathRingsRoutingIot::startup()
 	currentSequenceNumber = 0;
 	if (isSink)
 		sendTopologySetupPacket();
-	trace()<< "Node isMObile = " << isMobile;
+	//trace()<< "Node isMObile = " << isMobile;
 }
 
 void MultipathRingsRoutingIot::sendTopologySetupPacket()
@@ -175,6 +175,8 @@ void MultipathRingsRoutingIot::fromMacLayer(cPacket * pkt, int macAddress, doubl
 			int senderLevel = netPacket->getSenderLevel();
 			int sinkID = netPacket->getSinkID();
 			trace()<<" received MPRINGS_DATA_PACKET";
+			if (dst.compare("0") == 0)
+			    dst = SINK_NETWORK_ADDRESS;
 			if (dst.compare(BROADCAST_NETWORK_ADDRESS) == 0 ||
 					dst.compare(SELF_NETWORK_ADDRESS) == 0) {
 			    trace()<<"first if true";
