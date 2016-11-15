@@ -17,20 +17,26 @@
 #include "VirtualRouting.h"
 #include "MultipathRingsRoutingPacket_m.h"
 #include "MultipathRingsRoutingControl_m.h"
+#include "LineMobilityManager.h"
 
 #define NO_LEVEL  -110
 #define NO_SINK   -120
 
 using namespace std;
-
+struct DataPacketRecord {
+  //  int receivedFrom;
+    MultipathRingsRoutingPacket *dataPacket;
+};
 enum MultipathRingsRoutingTimers {
 	TOPOLOGY_SETUP_TIMEOUT = 1,
+	DROP_DATAPACKET_TIMEOUT = 2,
 };
 
 class MultipathRingsRoutingIot: public VirtualRouting {
  private:
 	int mpathRingsSetupFrameOverhead;	// in bytes
 	double netSetupTimeout;
+	double dropPacketTimeout;
 
 	// multipathRingsRouting-related member variables
 	int currentSequenceNumber;
@@ -42,7 +48,18 @@ class MultipathRingsRoutingIot: public VirtualRouting {
 	bool isConnected;	//attached under a parent node
 	bool isScheduledNetSetupTimeout;
 
+	bool justReturned; // for keeping track of mobility direction of Iot.
+	//True means just took turn and should send datapackets
+	// False means that either direction is towards sink or it has returned from quite some time.
 	bool isMobile;
+	vector<DataPacketRecord> dataPacketRecord;
+	bool towardsSink();
+    void addDataPacketRecord(MultipathRingsRoutingPacket *);
+    //void updateDataPacketRecord(DataPacketRecord) ;
+    bool getDirection();
+    bool directionCheckOk ();
+    LineMobilityManager* getMobilityModule ();
+    string getLocationText();
  protected:
 	void startup();
 	void fromApplicationLayer(cPacket *, const char *);

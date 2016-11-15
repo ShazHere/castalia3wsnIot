@@ -121,22 +121,22 @@ bool NodeIot::addDropReplySnPacketRecord(SnToIotPacket *rcvpkt, string source, d
 }
 void NodeIot::updateDropReplySnPacketRecord(iotDropReplySnRecord idrsr) {
     int i = 0, pos = -1;
-        int tblSize = (int)dropReplySnRecord.size();
+    int tblSize = (int)dropReplySnRecord.size();
 
-        for (i = 0; i < tblSize; i++)
-            if (dropReplySnRecord[i].SnId == idrsr.SnId)
-                pos = i;
-        if (pos == -1) {
-            trace() << "adding new record";
-            dropReplySnRecord.push_back(idrsr);
-        }
-        else {
-            trace()<< "Updating SN record";
-            dropReplySnRecord[pos].spentEnergy = idrsr.spentEnergy;
-            dropReplySnRecord[pos].lqi = idrsr.lqi;
-        }
-        if (tblSize < (int)dropReplySnRecord.size())
-            trace() << "drop reply packet added/updated at Iot";
+    for (i = 0; i < tblSize; i++)
+        if (dropReplySnRecord[i].SnId == idrsr.SnId)
+            pos = i;
+    if (pos == -1) {
+        trace() << "adding new record";
+        dropReplySnRecord.push_back(idrsr);
+    }
+    else {
+        trace()<< "Updating SN record";
+        dropReplySnRecord[pos].spentEnergy = idrsr.spentEnergy;
+        dropReplySnRecord[pos].lqi = idrsr.lqi;
+    }
+    if (tblSize < (int)dropReplySnRecord.size())
+        trace() << "drop reply packet added/updated at Iot";
 }
 bool NodeIot::addDataPacketRecord(GenericPacket *rcvpkt, string source) {
     iotDataPacketRecord idpr;
@@ -293,7 +293,7 @@ bool NodeIot::directionCheckOk ()
             return true;
         }
         else
-            return true;
+            return true;//BUG: this should be true!!
     }
 }
 bool NodeIot::isMovingTowardsSink() {
