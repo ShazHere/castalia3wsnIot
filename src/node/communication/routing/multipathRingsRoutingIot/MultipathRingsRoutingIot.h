@@ -30,6 +30,7 @@ struct DataPacketRecord {
 enum MultipathRingsRoutingTimers {
 	TOPOLOGY_SETUP_TIMEOUT = 1,
 	DROP_DATAPACKET_TIMEOUT = 2,
+	//BROADCAST
 };
 
 class MultipathRingsRoutingIot: public VirtualRouting {
@@ -52,7 +53,9 @@ class MultipathRingsRoutingIot: public VirtualRouting {
 	//True means just took turn and should send datapackets
 	// False means that either direction is towards sink or it has returned from quite some time.
 	bool isMobile;
-	vector<DataPacketRecord> dataPacketRecord;
+	bool duplicateRebroadcastAtNodeEnable; //see .ned file for description
+	vector<DataPacketRecord> dataPacketRecord; //for storing packets by IoT and SN
+	//Iot stores so that it sends down when direction changes, SN stores to create a delay for duplicate message re-broadcast
 	bool towardsSink();
     void addDataPacketRecord(MultipathRingsRoutingPacket *);
     //void updateDataPacketRecord(DataPacketRecord) ;
@@ -60,6 +63,8 @@ class MultipathRingsRoutingIot: public VirtualRouting {
     bool directionCheckOk ();
     LineMobilityManager* getMobilityModule ();
     string getLocationText();
+    void rebroadCastPacket(MultipathRingsRoutingPacket* netPacket);
+
  protected:
 	void startup();
 	void fromApplicationLayer(cPacket *, const char *);

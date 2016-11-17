@@ -17,6 +17,7 @@ Define_Module(MultipathRingsRoutingIot);
 void MultipathRingsRoutingIot::startup()
 {
     isMobile = par("isMobile");
+    duplicateRebroadcastAtNodeEnable = par("duplicateRebroadcastAtNodeEnable");
 	netSetupTimeout = (double)par("netSetupTimeout") / 1000.0;
 	mpathRingsSetupFrameOverhead = par("mpathRingsSetupFrameOverhead");
 
@@ -169,6 +170,13 @@ void MultipathRingsRoutingIot::fromApplicationLayer(cPacket * pkt, const char *d
         }
 }
 
+void MultipathRingsRoutingIot::rebroadCastPacket(
+        MultipathRingsRoutingPacket* netPacket) {
+    MultipathRingsRoutingPacket* dupPacket = netPacket->dup();
+    dupPacket->setSenderLevel(currentLevel);
+    toMacLayer(dupPacket, BROADCAST_MAC_ADDRESS);
+}
+
 void MultipathRingsRoutingIot::fromMacLayer(cPacket * pkt, int macAddress, double rssi, double lqi)
 {
 	MultipathRingsRoutingPacket *netPacket = dynamic_cast <MultipathRingsRoutingPacket*>(pkt);
@@ -227,12 +235,14 @@ void MultipathRingsRoutingIot::fromMacLayer(cPacket * pkt, int macAddress, doubl
 						// We want to rebroadcast this packet since we are not its destination
 						// For this, a copy of the packet is created and sender level field is 
 						// updated before calling toMacLayer() function
-					    //if (isNotDuplicatePacket(pkt))
-					    {
-					        MultipathRingsRoutingPacket *dupPacket = netPacket->dup();
-					        dupPacket->setSenderLevel(currentLevel);
-					        toMacLayer(dupPacket, BROADCAST_MAC_ADDRESS);
+					    if (false == duplicateRebroadcastAtNodeEnable) {
+                            if (isNotDuplicatePacket(pkt))
+                                rebroadCastPacket(netPacket);
+                            else
+                                trace()<<" Found a duplicate Packet, ignoring";
 					    }
+					    else
+					        rebroadCastPacket(netPacket);
 					}
 				}
 

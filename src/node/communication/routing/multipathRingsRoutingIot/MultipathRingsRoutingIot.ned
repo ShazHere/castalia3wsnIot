@@ -31,7 +31,10 @@ simple MultipathRingsRoutingIot like node.communication.routing.iRouting {
 	int netSetupTimeout = default (50);					// msec
 	
 	bool isMobile = default (false); 					// For mobile IoT objects
-
+	bool duplicateRebroadcastAtNodeEnable = default (true);	//by default (as in orginal protocol)
+												// each node re-boradcast the packets it has seen 
+														//if false it will not re-broadcast
+//With IoT's it should be set false, so that when IoT informs that I am taking x packet, its not rebroadcasted
  gates:
 	output toCommunicationModule;
 	output toMacModule;

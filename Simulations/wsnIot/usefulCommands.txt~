@@ -2,6 +2,9 @@
 # Description: Saves some useful castaliaResults and CastaliaPlot output commands so that I don't have 
 # to do research on them again and again. 
 
+#to get output for only sensor nodes (1-16), with 0 node as sink and (17-19) as IoT nodes
+CastaliaResults 161117-084735.txt -s consumed.energy -n --order=configs,node -f 'node=[1-9](?![7-9])'
+
 
 # to take histogram output of energy consumed by all nodes
 CastaliaResults -i 160919-103302.txt -s energy -n | CastaliaPlot -o energy-160919-103302.jpg -s histogram
@@ -11,20 +14,22 @@ CastaliaResults -i 160919-103302.txt -s energy -n | CastaliaPlot -o energy-16091
 CastaliaResults 161013-135647.txt -s consumed.energy | CastaliaPlot -o  energyConsumed-161013-135647.png -s histogram
  CastaliaResults 161013-135647.txt -s consumed.energy -n | CastaliaPlot -o  energyConsumed-161013-135647-node.png -s linespoints
 
+#if yrange needs to be specified: 
+--yrange=min:max
 
-######Using Valgrind debuger:
-Check this thread
+#===================Using Valgrind debuger:===============================================
+#Check this thread
 https://groups.google.com/forum/#!searchin/castalia-simulator/valgrind|sort:relevance/castalia-simulator/cJktoaw3B8o/rBBN7Uo4dv0J
 
-General valgrind command for me is"
+# General valgrind command for me is"
 valgrind --track-origins=yes ~/omnetpp-4.6/myOmnet4.6/castalia3/CastaliaBin >valgrind-output-161018.txt 2>&1
 
-2>&1 directs the standard output and the error output to the file.
-Valgrind only runs for the [General] configuration, so adjust omnet.ini accordingly.
-Make sure that before runnning valgrind, I change the makemake file: change the "-M release" to "-M debug" and then do the opposite for
-fast speed.
+#2>&1 directs the standard output and the error output to the file.
+#Valgrind only runs for the [General] configuration, so adjust omnet.ini accordingly.
+#Make sure that before runnning valgrind, I change the makemake file: change the "-M release" to "-M debug" and then do the opposite for
+#fast speed.
 
-Moreover, comment the omnet.ini General section and uncomment the block under twoIOT. 
-######END Using Valgrind debuger......
+#Moreover, comment the omnet.ini General section and uncomment the block under twoIOT. 
+#===================================END Using Valgrind debuger===================================
 
 
