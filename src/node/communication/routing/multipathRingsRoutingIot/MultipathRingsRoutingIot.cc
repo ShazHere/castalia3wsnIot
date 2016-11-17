@@ -227,14 +227,17 @@ void MultipathRingsRoutingIot::fromMacLayer(cPacket * pkt, int macAddress, doubl
 						// We want to rebroadcast this packet since we are not its destination
 						// For this, a copy of the packet is created and sender level field is 
 						// updated before calling toMacLayer() function
-						MultipathRingsRoutingPacket *dupPacket = netPacket->dup();
-						dupPacket->setSenderLevel(currentLevel);
-						toMacLayer(dupPacket, BROADCAST_MAC_ADDRESS);
+					    //if (isNotDuplicatePacket(pkt))
+					    {
+					        MultipathRingsRoutingPacket *dupPacket = netPacket->dup();
+					        dupPacket->setSenderLevel(currentLevel);
+					        toMacLayer(dupPacket, BROADCAST_MAC_ADDRESS);
+					    }
 					}
 				}
 
 			} else if (dst.compare(PARENT_NETWORK_ADDRESS) == 0) {
-			    trace()<<"received packet with dst.compare(PARENT_NETWORK_ADDRESS) == 0";
+			    trace()<<"WARN: received packet with dst.compare(PARENT_NETWORK_ADDRESS) == 0";
 				if (senderLevel == currentLevel + 1 && sinkID == currentSinkID) {
 					// Packet is for this node, if filter passes, forward it to application
 					if (isNotDuplicatePacket(pkt))
@@ -287,16 +290,6 @@ void MultipathRingsRoutingIot::addDataPacketRecord(MultipathRingsRoutingPacket *
         //trace()<< "size of dataPacketRecord = " << size;
 }
 
-//void MultipathRingsRoutingIot::updateDataPacketRecord(DataPacketRecord dpr) {
-//    if(isNotDuplicatePacket(dpr.dataPacket)){
-//        //trace()<< "adding new dataPaceket in dataPacketRecord";
-//        dataPacketRecord.push_back(dpr);
-//    }
-//    else
-//        trace()<<"discarding packet# " << dpr.dataPacket->getSequenceNumber() << " from " << dpr.dataPacket->getSource();
-//    int size = (int)dataPacketRecord.size();
-//    //trace()<< "size of dataPacketRecord = " << size;
-//}
 bool MultipathRingsRoutingIot::directionCheckOk ()
 {
     bool direction = getDirection();

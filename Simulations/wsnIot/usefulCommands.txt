@@ -11,6 +11,7 @@ CastaliaResults -i 160919-103302.txt -s energy -n | CastaliaPlot -o energy-16091
 CastaliaResults 161013-135647.txt -s consumed.energy | CastaliaPlot -o  energyConsumed-161013-135647.png -s histogram
  CastaliaResults 161013-135647.txt -s consumed.energy -n | CastaliaPlot -o  energyConsumed-161013-135647-node.png -s linespoints
 
+if yrange needs to be specified: --yrange=min:max
 
 ######Using Valgrind debuger:
 Check this thread
