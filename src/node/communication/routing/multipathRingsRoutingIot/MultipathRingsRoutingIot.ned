@@ -30,6 +30,7 @@ simple MultipathRingsRoutingIot like node.communication.routing.iRouting {
 	int mpathRingsSetupFrameOverhead = default (13);	// bytes
 	int netSetupTimeout = default (50);					// msec
 	
+	int iotIdsStartFrom = default (1000); 				// considering no IoT objects by default
 	bool isMobile = default (false); 					// For mobile IoT objects
 	bool duplicateRebroadcastAtNodeEnable = default (true);	//by default (as in orginal protocol)
 												// each node re-boradcast the packets it has seen 

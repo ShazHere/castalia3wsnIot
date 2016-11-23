@@ -39,12 +39,13 @@ void ThroughputTest::startup()
 	packetsSent.clear();
 	packetsReceived.clear();
 	bytesReceived.clear();
-	//if (8 == self){
+	//if ( 16 == self)
+	{
 	    if (packet_spacing > 0 && (recipientAddress.compare(SELF_NETWORK_ADDRESS) != 0))
 	        setTimer(SEND_PACKET, packet_spacing + startupDelay);
 	    else
 	        trace() << "Not sending packets";
-	//}
+	}
 	declareOutput("Packets received per node");
 }
 

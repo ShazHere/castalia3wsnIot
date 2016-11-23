@@ -18,6 +18,9 @@
 #include "MultipathRingsRoutingPacket_m.h"
 #include "MultipathRingsRoutingControl_m.h"
 #include "LineMobilityManager.h"
+#include "assert.h"
+//#define NDEBUG //enable it to turn off debug mode and all assertions in current file
+
 
 #define NO_LEVEL  -110
 #define NO_SINK   -120
@@ -30,7 +33,7 @@ struct DataPacketRecord {
 enum MultipathRingsRoutingTimers {
 	TOPOLOGY_SETUP_TIMEOUT = 1,
 	DROP_DATAPACKET_TIMEOUT = 2,
-	//BROADCAST
+	SN_BROADCAST_TIMEOUT = 3,
 };
 
 class MultipathRingsRoutingIot: public VirtualRouting {
@@ -38,6 +41,7 @@ class MultipathRingsRoutingIot: public VirtualRouting {
 	int mpathRingsSetupFrameOverhead;	// in bytes
 	double netSetupTimeout;
 	double dropPacketTimeout;
+	double snBroadcastTimeout;
 
 	// multipathRingsRouting-related member variables
 	int currentSequenceNumber;
@@ -54,16 +58,19 @@ class MultipathRingsRoutingIot: public VirtualRouting {
 	// False means that either direction is towards sink or it has returned from quite some time.
 	bool isMobile;
 	bool duplicateRebroadcastAtNodeEnable; //see .ned file for description
+	int iotIdsStartFrom;
 	vector<DataPacketRecord> dataPacketRecord; //for storing packets by IoT and SN
 	//Iot stores so that it sends down when direction changes, SN stores to create a delay for duplicate message re-broadcast
 	bool towardsSink();
     void addDataPacketRecord(MultipathRingsRoutingPacket *);
-    //void updateDataPacketRecord(DataPacketRecord) ;
+    bool deleteDataPacketRecord (MultipathRingsRoutingPacket *dataPacket);
     bool getDirection();
     bool directionCheckOk ();
     LineMobilityManager* getMobilityModule ();
     string getLocationText();
     void rebroadCastPacket(MultipathRingsRoutingPacket* netPacket);
+    void rebroadcastSamePacket(MultipathRingsRoutingPacket* netPacket);
+    bool sourceIsIot(int src);
 
  protected:
 	void startup();

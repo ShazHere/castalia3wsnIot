@@ -18,6 +18,7 @@ void MultipathRingsRoutingIot::startup()
 {
     isMobile = par("isMobile");
     duplicateRebroadcastAtNodeEnable = par("duplicateRebroadcastAtNodeEnable");
+    iotIdsStartFrom = (int)par("iotIdsStartFrom");
 	netSetupTimeout = (double)par("netSetupTimeout") / 1000.0;
 	mpathRingsSetupFrameOverhead = par("mpathRingsSetupFrameOverhead");
 
@@ -38,10 +39,17 @@ void MultipathRingsRoutingIot::startup()
 		sendTopologySetupPacket();
 	dataPacketRecord.clear();
 	justReturned = false;
-	dropPacketTimeout = 1;
+	dropPacketTimeout = 0.5;
+	snBroadcastTimeout = 2;
 	setTimer(DROP_DATAPACKET_TIMEOUT, dropPacketTimeout);
 }
 
+bool MultipathRingsRoutingIot::sourceIsIot(int src) {
+    if (src >= iotIdsStartFrom)
+        return true;
+    else
+        return false;
+}
 void MultipathRingsRoutingIot::sendTopologySetupPacket()
 {
 
@@ -68,10 +76,37 @@ void MultipathRingsRoutingIot::sendControlMessage(multipathRingsRoutingControlDe
 
 }
 
+void MultipathRingsRoutingIot::rebroadcastSamePacket(MultipathRingsRoutingPacket* netPacket) {
+    MultipathRingsRoutingPacket* dupPacket =  netPacket->dup();
+    toMacLayer(dupPacket, BROADCAST_MAC_ADDRESS);
+}
+
+//Ring level also changed according to current hop
+void MultipathRingsRoutingIot::rebroadCastPacket(MultipathRingsRoutingPacket* netPacket) {
+    MultipathRingsRoutingPacket* dupPacket = netPacket->dup();
+    dupPacket->setSenderLevel(currentLevel);
+    toMacLayer(dupPacket, BROADCAST_MAC_ADDRESS);
+}
+
 void MultipathRingsRoutingIot::timerFiredCallback(int index)
 {
-    if (!isMobile)
+    if (!isMobile) //Means static SN
     {
+        if (index == SN_BROADCAST_TIMEOUT ) {
+            setTimer(SN_BROADCAST_TIMEOUT, snBroadcastTimeout);
+            int size = (int)dataPacketRecord.size();
+            for (int i = 0; i< size; i++) {
+                //if (isNotDuplicatePacket(dataPacketRecord[i].dataPacket)) {
+                    trace()<< "rebroadcasting the data packet from dataRecord src="
+                            << dataPacketRecord[i].dataPacket->getSource()
+                            << " seq=" << dataPacketRecord[i].dataPacket->getSequenceNumber();
+                    rebroadCastPacket(dataPacketRecord[i].dataPacket);
+                //}
+            }
+            dataPacketRecord.clear();
+            return;
+        }
+
         if (index != TOPOLOGY_SETUP_TIMEOUT)
             return;
 
@@ -109,14 +144,15 @@ void MultipathRingsRoutingIot::timerFiredCallback(int index)
             if (directionCheckOk()){ //means the exact moment when IoT is changing direction
                 int size = (int)dataPacketRecord.size();
                 for (int i = 0; i< size; i++) {
-                    trace()<< "drop the data packets now!! " << getLocationText();
-                    MultipathRingsRoutingPacket *dupPacket = dataPacketRecord[i].dataPacket->dup();
-                    toMacLayer(dupPacket, BROADCAST_MAC_ADDRESS);
+                    trace()<< "drop now! loc=" << getLocationText() << "src="
+                            << dataPacketRecord[i].dataPacket->getSource()
+                            << " seq=" << dataPacketRecord[i].dataPacket->getSequenceNumber();;
+                    rebroadcastSamePacket(dataPacketRecord[i].dataPacket);
                 }
                 dataPacketRecord.clear();
             }
-            else
-                trace()<<"direction check failed";
+            else ;
+                //trace()<<"direction check failed";
             setTimer(DROP_DATAPACKET_TIMEOUT, dropPacketTimeout);
             break;
         }
@@ -170,12 +206,7 @@ void MultipathRingsRoutingIot::fromApplicationLayer(cPacket * pkt, const char *d
         }
 }
 
-void MultipathRingsRoutingIot::rebroadCastPacket(
-        MultipathRingsRoutingPacket* netPacket) {
-    MultipathRingsRoutingPacket* dupPacket = netPacket->dup();
-    dupPacket->setSenderLevel(currentLevel);
-    toMacLayer(dupPacket, BROADCAST_MAC_ADDRESS);
-}
+
 
 void MultipathRingsRoutingIot::fromMacLayer(cPacket * pkt, int macAddress, double rssi, double lqi)
 {
@@ -213,6 +244,7 @@ void MultipathRingsRoutingIot::fromMacLayer(cPacket * pkt, int macAddress, doubl
 			if (dst.compare(BROADCAST_NETWORK_ADDRESS) == 0 ||
 					dst.compare(SELF_NETWORK_ADDRESS) == 0) {
 			    trace()<<"WARN: Packet sent to node other than SINK";
+			    assert(false);
 				// We are not filtering packets that are sent to this node directly or to 
 				// broadcast network address, making application layer responsible for them
 				toApplicationLayer(pkt->decapsulate());
@@ -223,23 +255,39 @@ void MultipathRingsRoutingIot::fromMacLayer(cPacket * pkt, int macAddress, doubl
 					if (self == sinkID) {
 						// Packet is for this node, if filter passes, forward it to application
 						if (isNotDuplicatePacket(pkt)) {
-						    trace()<<"reached SINK, sent by "<< src <<
+						    trace()<<"reached SINK, src="<< src <<
 						    " seqNO= "<< netPacket->getSequenceNumber()<<
-						    " Mac address " << macAddress <<
-						    " source in Packet= " << netPacket->getSource();
+						    " from hop" << macAddress;
 						    toApplicationLayer(decapsulatePacket(pkt));
 						}
 						else
-							trace() << "Discarding duplicate packet from node " << src;
+							trace() << "Discarding duplicate src="<< src <<
+                            " seqNO= "<< netPacket->getSequenceNumber()<<
+                            " from hop" << macAddress;
 					} else if (sinkID == currentSinkID) {
 						// We want to rebroadcast this packet since we are not its destination
 						// For this, a copy of the packet is created and sender level field is 
 						// updated before calling toMacLayer() function
 					    if (false == duplicateRebroadcastAtNodeEnable) {
-                            if (isNotDuplicatePacket(pkt))
-                                rebroadCastPacket(netPacket);
-                            else
-                                trace()<<" Found a duplicate Packet, ignoring";
+					        //rebroadCastPacket(netPacket); add packet in list to broadcast a bit latter
+					        //if sender is IoT object, then ignore packet (since added in duplicate record)
+					        //coz IoT will already deliver it towards sink
+					        if (!sourceIsIot(macAddress)) {
+					            trace()<< "Sender not IoT, so ..." ;
+					            if (isNotDuplicatePacket(pkt)) {
+					                trace()<< "adding packet, hop=" << macAddress << " src="<< src
+	                                        << " packet#" <<  netPacket->getSequenceNumber();
+					                addDataPacketRecord(netPacket);
+					                setTimer(SN_BROADCAST_TIMEOUT, snBroadcastTimeout);
+					            }
+					            else
+					                trace()<<" Found a duplicate Packet, not adding and ignoring";
+					        }
+					        else {
+					            trace()<<"sender is IOT, hop-id="<<macAddress;
+					            if (deleteDataPacketRecord (netPacket))
+					                ;//trace()<< "packet deleted";
+					        }
 					    }
 					    else
 					        rebroadCastPacket(netPacket);
@@ -248,6 +296,7 @@ void MultipathRingsRoutingIot::fromMacLayer(cPacket * pkt, int macAddress, doubl
 
 			} else if (dst.compare(PARENT_NETWORK_ADDRESS) == 0) {
 			    trace()<<"WARN: received packet with dst.compare(PARENT_NETWORK_ADDRESS) == 0";
+			    assert(false);
 				if (senderLevel == currentLevel + 1 && sinkID == currentSinkID) {
 					// Packet is for this node, if filter passes, forward it to application
 					if (isNotDuplicatePacket(pkt))
@@ -256,8 +305,10 @@ void MultipathRingsRoutingIot::fromMacLayer(cPacket * pkt, int macAddress, doubl
 						trace() << "Discarding duplicate packet from " << src << " lasthop= " << macAddress;
 				}
 			}
-			else //for debugging purpose
+			else {//for debugging purpose
 			    trace()<<"WARN: NO if true dst is " << dst << " sink network address is " << SINK_NETWORK_ADDRESS;
+			    assert(false);
+			}
 			break;
 		}
 	}
@@ -273,18 +324,20 @@ void MultipathRingsRoutingIot::fromMacLayer(cPacket * pkt, int macAddress, doubl
                 string src(netPacket->getSource());
                 int senderLevel = netPacket->getSenderLevel();
                 int sinkID = netPacket->getSinkID();
-                trace()<<"mobile: received packet# " << netPacket->getSequenceNumber()<< " from "<< src  ;
-                trace()<<"mobile: destination = " << dst;
-                if(isNotDuplicatePacket(netPacket))
+                trace()<<"mobile: received packet# " << netPacket->getSequenceNumber()
+                        << " src="<< src<<" hop "<< macAddress  ;
+                if(isNotDuplicatePacket(netPacket)) {
                     addDataPacketRecord(netPacket);
+                    trace()<<"rebroadcast by IoT to avoid further propagation";
+                    rebroadcastSamePacket(netPacket); // for the sake that neighbours of current node donot boradcast it again
+                }
                 else
                     trace()<<"discarding packet# " << netPacket->getSequenceNumber() << " from " << src<< " lasthop= " << macAddress;
             }
         } //end Switch
     }//end if (towardsSink())
-    else  { //moving away from sink
-    //    trace()<< "MOVING AWAY FROM SINK";
-    }
+    else  //mobile node and moving away from sink
+          trace()<< "MOVING AWAY FROM SINK";
 }
 /**
  * return True if Iot object should drop messages considering its direction.
@@ -294,10 +347,34 @@ void MultipathRingsRoutingIot::addDataPacketRecord(MultipathRingsRoutingPacket *
     DataPacketRecord dpr;
     MultipathRingsRoutingPacket *mrrp =dataPacket->dup();
     dpr.dataPacket = mrrp;
-
     dataPacketRecord.push_back(dpr);
    // int size = (int)dataPacketRecord.size();
         //trace()<< "size of dataPacketRecord = " << size;
+}
+
+bool MultipathRingsRoutingIot::deleteDataPacketRecord (MultipathRingsRoutingPacket *dataPacket) {
+    int src = resolveNetworkAddress(dataPacket->getSource());
+    unsigned int seq = dataPacket->getSequenceNumber();
+    int size = dataPacketRecord.size();
+    trace()<< "deleteable? src=" << src<< " seq=" << seq<< " sizeRecord=" << size;
+    int removeIndex = -1;
+    for( int i = 0; i< size; i++) {
+        trace ()<< "src = " << src << " resolve = "
+                << resolveNetworkAddress(dataPacketRecord[i].dataPacket->getSource())
+                << " seq = " << seq << " datapacket[i].getSeq= "
+                << dataPacketRecord[i].dataPacket->getSequenceNumber();
+        if (resolveNetworkAddress(dataPacketRecord[i].dataPacket->getSource()) == src
+                && dataPacketRecord[i].dataPacket->getSequenceNumber() == seq)
+            removeIndex = i;
+    }
+    if (removeIndex >=0) {
+        dataPacketRecord.erase(dataPacketRecord.begin() + removeIndex);
+        size = dataPacketRecord.size();
+        trace ()<<"removed packet src="<< src << " seq# " << seq << " sizeRecord=" << size ;
+        return true;
+    }
+    else
+        return false;
 }
 
 bool MultipathRingsRoutingIot::directionCheckOk ()
@@ -338,7 +415,7 @@ LineMobilityManager* MultipathRingsRoutingIot::getMobilityModule ()
 }
 string MultipathRingsRoutingIot::getLocationText() {
     std::string str;
-    str =  " Location = (" + std::to_string((int)(floor(getMobilityModule()->getLocation().x))) + ", "
+    str =  " Location = (" + std::to_string((int)(floor(getMobilityModule()->getLocation().x))) + ","
            + std::to_string((int)(floor(getMobilityModule()->getLocation().y))) + ")";
     return str;
 }

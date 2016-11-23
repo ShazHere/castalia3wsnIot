@@ -128,7 +128,7 @@ void VirtualRouting::handleMessage(cMessage * msg)
 		case NETWORK_LAYER_PACKET:
 		{
 			RoutingPacket *netPacket = check_and_cast <RoutingPacket*>(msg);
-			trace() << "Received [" << netPacket->getName() << "] from MAC layer";
+			//trace() << "Received [" << netPacket->getName() << "] from MAC layer";
 			NetMacInfoExchange_type info = netPacket->getNetMacInfoExchange();
 
 			/* Control is now passed to a specific routing protocol by calling fromMacLayer()
