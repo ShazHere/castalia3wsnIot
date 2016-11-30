@@ -416,9 +416,9 @@ LineMobilityManager* MultipathRingsRoutingIot::getMobilityModule ()
 }
 string MultipathRingsRoutingIot::getLocationText() {
     std::string str;
-    str =  " Location = (" + std::to_string((int)(floor(getMobilityModule()->getLocation().x))) + ","
+   /* str =  " Location = (" + std::to_string((int)(floor(getMobilityModule()->getLocation().x))) + ","
            + std::to_string((int)(floor(getMobilityModule()->getLocation().y))) + ")";
-    return str;
+    */return str;
 }
 
 bool MultipathRingsRoutingIot::getIsMobile() {
