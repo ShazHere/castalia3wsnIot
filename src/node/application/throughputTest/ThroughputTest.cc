@@ -16,8 +16,8 @@ Define_Module(ThroughputTest);
 
 string ThroughputTest::getLocationText() {
     std::string str;
-    str =  " Location = (" + std::to_string((int)(floor(mobilityModule->getLocation().x))) + ", "
-           + std::to_string((int)(floor(mobilityModule->getLocation().y))) + ")";
+//    str =  " Location = (" + std::to_string((int)(floor(mobilityModule->getLocation().x))) + ", "
+//           + std::to_string((int)(floor(mobilityModule->getLocation().y))) + ")";
     return str;
 }
 
