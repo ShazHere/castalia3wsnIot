@@ -42,6 +42,7 @@ void MultipathRingsRoutingIot::startup()
 	dropPacketTimeout = 0.5;
 	snBroadcastTimeout = 2;
 	setTimer(DROP_DATAPACKET_TIMEOUT, dropPacketTimeout);
+	trace()<< " isMobile is " << isMobile;
 }
 
 bool MultipathRingsRoutingIot::sourceIsIot(int src) {
@@ -418,4 +419,8 @@ string MultipathRingsRoutingIot::getLocationText() {
     str =  " Location = (" + std::to_string((int)(floor(getMobilityModule()->getLocation().x))) + ","
            + std::to_string((int)(floor(getMobilityModule()->getLocation().y))) + ")";
     return str;
+}
+
+bool MultipathRingsRoutingIot::getIsMobile() {
+    return isMobile;
 }

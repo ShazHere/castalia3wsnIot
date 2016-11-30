@@ -29,8 +29,8 @@ simple ThroughputTest like node.application.iApplication {
 											// These parameters can be used to create an
 											// application-level static routing. This way we can
 											// have a multi-hop throughput test   
-	bool isSink = default (false); //for multiRingsrouting (not successfull)
-
+	bool isSink = default (false); //for multiRingsrouting
+	bool calculateEnergy = default (true);
 //      bool broadcastReports = default(false);
 	string reportDestination = default ("0");	//this can also be set to "-1" for broadcast
 												// or to a specific node's address (e.g "0")

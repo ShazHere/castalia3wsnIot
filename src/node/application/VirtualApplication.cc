@@ -65,6 +65,8 @@ void VirtualApplication::initialize()
 	latencyBuckets = hasPar("latencyHistogramBuckets") ? par("latencyHistogramBuckets") : 0;
 	if (latencyMax > 0 && latencyBuckets > 0)
 		declareHistogram("Application level latency, in ms", 0, latencyMax, latencyBuckets);
+	calculateEnergy = hasPar("calculateEnergy") ? par("calculateEnergy") : true; // by default energy is calculated for all
+	trace()<< "in Virtual application calculateEnergy = " << calculateEnergy;
 }
 
 void VirtualApplication::handleMessage(cMessage * msg)
@@ -207,3 +209,6 @@ void VirtualApplication::toNetworkLayer(cPacket * pkt, const char *dst)
 	send(appPkt, "toCommunicationModule");
 }
 
+bool VirtualApplication:: isCalculateEnergy() {
+    return calculateEnergy;
+}

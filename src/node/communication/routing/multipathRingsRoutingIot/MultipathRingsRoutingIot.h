@@ -82,6 +82,8 @@ class MultipathRingsRoutingIot: public VirtualRouting {
 
 	void timerFiredCallback(int);
 	void processBufferedPacket();
+ public :
+	bool getIsMobile();
 };
 
 #endif				//MULTIPATHRINGSROUTINGMODULE

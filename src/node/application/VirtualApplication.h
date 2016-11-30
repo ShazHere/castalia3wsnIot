@@ -40,6 +40,8 @@ class VirtualApplication: public CastaliaModule, public TimerService {
 	double latencyMax;
 	int latencyBuckets;
 
+	bool calculateEnergy; // tracks if resource module make energy calcutions for this node
+
 	/*--- Custom class parameters ---*/
 	int self;								// the node's ID
 	string selfAddress;						// the node's routing level address
@@ -65,6 +67,9 @@ class VirtualApplication: public CastaliaModule, public TimerService {
 	virtual void handleNetworkControlMessage(cMessage *) {}
 	virtual void handleMacControlMessage(cMessage *) {}
 	virtual void handleRadioControlMessage(RadioControlMessage *) {	}
+
+ public:
+	bool isCalculateEnergy();
 };
 
 #endif

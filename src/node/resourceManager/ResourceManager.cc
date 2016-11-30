@@ -11,6 +11,7 @@
  *******************************************************************************/
 
 #include "ResourceManager.h"
+#include "VirtualApplication.h"
 
 Define_Module(ResourceManager);
 
@@ -104,23 +105,33 @@ void ResourceManager::handleMessage(cMessage * msg)
 
 void ResourceManager::finishSpecific()
 {
-	calculateEnergySpent();
-	declareOutput("Consumed Energy");
-	collectOutput("Consumed Energy", "", initialEnergy - remainingEnergy);
-	declareOutput("Remaining Energy");
-	collectOutput("Remaining Energy", "", remainingEnergy);
+    VirtualApplication *va = (check_and_cast<VirtualApplication*>)(getParentModule()->getSubmodule("Application"));
+    if (va->isCalculateEnergy()) { // nodes with value false will not give energy output
+        trace()<< "Resource output calculated";
+        calculateEnergySpent();
+        declareOutput("Consumed Energy");
+        collectOutput("Consumed Energy", "", initialEnergy - remainingEnergy);
+        declareOutput("Remaining Energy");
+        collectOutput("Remaining Energy", "", remainingEnergy);
+    }
+    else
+        trace()<< "Resource output not calculated";
 
 	if (getParentModule()->getIndex() == 0) {
 		cTopology *topo;	// temp variable to access energy spent by other nodes
 		topo = new cTopology("topo");
 		topo->extractByNedTypeName(cStringTokenizer("node.Node").asVector());
 
-		double minLifetime = estimateLifetime();
+		double minLifetime = estimateLifetime(); //doesn't check other nodes
 		for (int i = 1; i < topo->getNumNodes(); i++) {
-			ResourceManager *resMng = dynamic_cast<ResourceManager*>
-				(topo->getNode(i)->getModule()->getSubmodule("ResourceManager"));
-			if (minLifetime > resMng->estimateLifetime()) 
-				minLifetime = resMng->estimateLifetime();
+		    VirtualApplication *va = (check_and_cast<VirtualApplication*>)
+		            (topo->getNode(i)-> getModule()->getSubmodule("Application"));
+		    if (va-> isCalculateEnergy()) { // mobile nodes will not give energy output
+		        ResourceManager *resMng = dynamic_cast<ResourceManager*>
+		        (topo->getNode(i)->getModule()->getSubmodule("ResourceManager"));
+		        if (minLifetime > resMng->estimateLifetime())
+		            minLifetime = resMng->estimateLifetime();
+		    }
 		}
 		declareOutput("Estimated network lifetime (days)");
 		collectOutput("Estimated network lifetime (days)", "", minLifetime);

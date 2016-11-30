@@ -119,9 +119,9 @@ void ThroughputTest::finishSpecific() {
 			(topo->getNode(i)->getModule()->getSubmodule("Application"));
 		//trace() << "value of i is " << i << " and self is " << self;
 		if (appModule) {
-			//trace() << " appModule True" << "value of i is " << i << " and self is " << self;
 			int packetsSent = appModule->getPacketsSent(self);
-			if (packetsSent > 0) { // this node sent us some packets
+			//trace()<< "i is " << i << " isCalculateEnergy at app layer " << appModule->isCalculateEnergy();
+			if (packetsSent > 0 && appModule->isCalculateEnergy()) { // this node sent us some packets
 			    trace()<< "packets sent by " << i << " is  = " << packetsSent
 			            << " and received are " << packetsReceived[i];
 				float rate = (float)packetsReceived[i]/packetsSent;
