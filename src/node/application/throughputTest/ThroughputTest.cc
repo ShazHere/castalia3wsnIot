@@ -16,8 +16,8 @@ Define_Module(ThroughputTest);
 
 string ThroughputTest::getLocationText() {
     std::string str;
-//    str =  " Location = (" + std::to_string((int)(floor(mobilityModule->getLocation().x))) + ", "
-//           + std::to_string((int)(floor(mobilityModule->getLocation().y))) + ")";
+    str =  " Location = (" + std::to_string((int)(floor(mobilityModule->getLocation().x))) + ", "
+           + std::to_string((int)(floor(mobilityModule->getLocation().y))) + ")";
     return str;
 }
 
@@ -39,7 +39,7 @@ void ThroughputTest::startup()
 	packetsSent.clear();
 	packetsReceived.clear();
 	bytesReceived.clear();
-	//if ( 16 == self)
+	if (16 == self)
 	{
 	    if (packet_spacing > 0 && (recipientAddress.compare(SELF_NETWORK_ADDRESS) != 0))
 	        setTimer(SEND_PACKET, packet_spacing + startupDelay);

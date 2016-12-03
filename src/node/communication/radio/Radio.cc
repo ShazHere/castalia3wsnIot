@@ -1378,10 +1378,25 @@ void Radio::ReceivedSignalDebug(const char *description)
 				it1->currentInterference << ", bitErr:" << it1->bitErrors;
 	}
 }
-double Radio:: getTxPowerIndBm() //made by Shaza
+double Radio::getTxPowerIndBm() //made by Shaza
 {
     double txPower_dBm;
     if (parseFloat(startingTxPower.c_str(), &txPower_dBm))
             opp_error("Unable to parse TxOutputPower %s", startingTxPower.c_str());
     return txPower_dBm;
+}
+BasicState_type Radio::getState() // by Shaza
+{
+    BasicState_type currentState = state;
+    return currentState;
+}
+char * Radio::getStateText() {
+    if (state == 0)
+            return "Rx" ;
+    else if  (state == 1)
+            return "Tx";
+    else if (state == 2)
+        return "Sleep";
+    else
+        return "-1";
 }

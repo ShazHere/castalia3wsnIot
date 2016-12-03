@@ -29,6 +29,7 @@ class LineMobilityManager: public VirtualMobilityManager {
 	double loc2_y;
 	double loc2_z;
 	double speed;
+	double originalSpeed;
 
 	/*--- Custom class parameters ---*/
 	double incr_x;
@@ -40,6 +41,7 @@ class LineMobilityManager: public VirtualMobilityManager {
  protected:
 	void initialize();
 	void handleMessage(cMessage * msg);
+	void calculateIncrements(); //added by Shaza Hanif
  public:
 	int getDirection(); //added by Shaza Hanif
 	double getSpeed(); //added by Shaza Hanif

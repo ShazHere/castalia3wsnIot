@@ -238,6 +238,8 @@ class Radio: public CastaliaModule {
 	double readRSSI();
 	CCA_result isChannelClear();
 	double getTxPowerIndBm(); //made by Shaza
+	BasicState_type getState();
+	char * getStateText();
 };
 
 #endif				//_RADIOMODULE_H_

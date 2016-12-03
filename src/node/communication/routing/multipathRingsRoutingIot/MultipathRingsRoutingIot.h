@@ -71,6 +71,7 @@ class MultipathRingsRoutingIot: public VirtualRouting {
     void rebroadCastPacket(MultipathRingsRoutingPacket* netPacket);
     void rebroadcastSamePacket(MultipathRingsRoutingPacket* netPacket);
     bool sourceIsIot(int src);
+    void printSome();
 
  protected:
 	void startup();

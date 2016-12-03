@@ -11,6 +11,7 @@
  *******************************************************************************/
 
 #include "MultipathRingsRoutingIot.h"
+#include "Radio.h"
 
 Define_Module(MultipathRingsRoutingIot);
 
@@ -42,7 +43,7 @@ void MultipathRingsRoutingIot::startup()
 	dropPacketTimeout = 0.5;
 	snBroadcastTimeout = 2;
 	setTimer(DROP_DATAPACKET_TIMEOUT, dropPacketTimeout);
-	trace()<< " isMobile is " << isMobile;
+//	trace()<< " isMobile is " << isMobile;
 }
 
 bool MultipathRingsRoutingIot::sourceIsIot(int src) {
@@ -149,7 +150,10 @@ void MultipathRingsRoutingIot::timerFiredCallback(int index)
                             << dataPacketRecord[i].dataPacket->getSource()
                             << " seq=" << dataPacketRecord[i].dataPacket->getSequenceNumber();;
                     rebroadcastSamePacket(dataPacketRecord[i].dataPacket);
+                    //MultipathRingsRoutingPacket* dupPacket =  dataPacketRecord[i].dataPacket->dup();
+                    //toMacLayer(dupPacket, 0);
                 }
+                printSome();
                 dataPacketRecord.clear();
             }
             else ;
@@ -314,7 +318,7 @@ void MultipathRingsRoutingIot::fromMacLayer(cPacket * pkt, int macAddress, doubl
 		}
 	}
     } //end if (!isMobile)
-    else  if (towardsSink())//means mobile node
+    else  if (towardsSink())//means mobile node and moving towards sink
     {
         switch (netPacket->getMultipathRingsRoutingPacketKind()){
             case MPRINGS_TOPOLOGY_SETUP_PACKET:{
@@ -423,4 +427,24 @@ string MultipathRingsRoutingIot::getLocationText() {
 
 bool MultipathRingsRoutingIot::getIsMobile() {
     return isMobile;
+}
+
+void MultipathRingsRoutingIot::printSome() {
+    cModule *selfNode = getParentModule()->getParentModule(); //(check_and_cast<Radio*>)(
+    Radio *radioModule = (check_and_cast<Radio*>)(selfNode->getSubmodule("Communication")->getSubmodule("Radio"));
+    trace()<< "self radio state=" << radioModule->getStateText();
+
+    int numNodes = getParentModule()->getParentModule()->getParentModule()->par("numNodes");
+    cTopology *topo;    // temp variable to access packets received by other nodes
+    topo = new cTopology("topo");
+    topo->extractByNedTypeName(cStringTokenizer("node.Node").asVector());
+
+    for (int i = 0; i < numNodes; i++) {
+//            ThroughputTest *appModule = dynamic_cast<ThroughputTest*>
+//                (topo->getNode(i)->getModule()->getSubmodule("Application"));
+            Radio *radioModule = (check_and_cast<Radio*>)(topo->getNode(i)->getModule()->
+                    getSubmodule("Communication")->getSubmodule("Radio"));
+            trace()<< "radio " << i << " state= " << radioModule->getStateText();
+
+        }
 }
