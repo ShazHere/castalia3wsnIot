@@ -28,13 +28,12 @@ void LineMobilityManager::initialize()
 	loc2_y = par("yCoorDestination");
 	loc2_z = par("zCoorDestination");
 	speed = par("speed");
-	originalSpeed = speed;
 	distance = sqrt(pow(loc1_x - loc2_x, 2) + pow(loc1_y - loc2_y, 2) +
 		 pow(loc1_z - loc2_z, 2));
 	direction = 1;
 	calculateIncrements();
 	scheduleAt(simTime() + updateInterval,
-	                new MobilityManagerMessage("Periodic location update message", MOBILITY_PERIODIC));
+	        new MobilityManagerMessage("Periodic location update message", MOBILITY_PERIODIC));
 }
 
 void LineMobilityManager::calculateIncrements() {
@@ -68,7 +67,7 @@ void LineMobilityManager::handleMessage(cMessage * msg)
 					nodeLocation.y -= (nodeLocation.y - loc2_y) * 2;
 					nodeLocation.z -= (nodeLocation.z - loc2_z) * 2;
 					//speed = originalSpeed * 2;
-					calculateIncrements();
+					//calculateIncrements();
 				}
 			} else {
 				nodeLocation.x -= incr_x;
@@ -85,7 +84,7 @@ void LineMobilityManager::handleMessage(cMessage * msg)
 					nodeLocation.y -= (nodeLocation.y - loc1_y) * 2;
 					nodeLocation.z -= (nodeLocation.z - loc1_z) * 2;
 					//speed = originalSpeed;
-					calculateIncrements();
+					//calculateIncrements();
 				}
 			}
 			notifyWirelessChannel();

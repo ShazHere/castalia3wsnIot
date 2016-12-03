@@ -29,7 +29,6 @@ class LineMobilityManager: public VirtualMobilityManager {
 	double loc2_y;
 	double loc2_z;
 	double speed;
-	double originalSpeed;
 
 	/*--- Custom class parameters ---*/
 	double incr_x;
